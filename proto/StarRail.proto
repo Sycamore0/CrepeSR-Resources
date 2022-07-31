@@ -1,0 +1,4067 @@
+syntax = "proto3";
+package CrepeSR.Proto;
+
+message PlayerBasicInfo {
+  string nickname = 1;
+  uint32 level = 2;
+  uint32 exp = 3;
+  uint32 stamina = 4;
+  uint32 mcoin = 5;
+  uint32 hcoin = 6;
+  uint32 scoin = 7;
+  uint32 world_level = 8;
+}
+
+message BlackInfo {
+  uint32 begin_time = 1;
+  uint32 end_time = 2;
+  uint32 limit_level = 3;
+  uint32 ban_type = 4;
+}
+
+message VersionCount {
+  uint32 version = 1;
+  uint32 count = 2;
+}
+
+message ClientDownloadData {
+  uint32 version = 1;
+  uint32 time = 2;
+  bytes data = 3;
+}
+
+message ClientUploadData {
+  string tag = 1;
+  string value = 2;
+}
+
+message FeatureSwitchParam { repeated uint32 param_list = 1; }
+
+message FeatureSwitchInfo {
+  FeatureSwitchType type = 1;
+  repeated FeatureSwitchParam switch_list = 2;
+  bool is_all_closed = 3;
+}
+
+enum AccountType {
+  ACCOUNT_MIHOYO_GUEST = 0;
+  ACCOUNT_MIHOYO = 1;
+  ACCOUNT_XIAOMI = 11;
+  ACCOUNT_COOLPAD = 12;
+  ACCOUNT_YYB = 13;
+  ACCOUNT_BILI = 14;
+  ACCOUNT_HUAWEI = 15;
+  ACCOUNT_MEIZU = 16;
+  ACCOUNT_360 = 17;
+  ACCOUNT_OPPO = 18;
+  ACCOUNT_VIVO = 19;
+  ACCOUNT_UC = 20;
+  ACCOUNT_WANDOJIA = 21;
+  ACCOUNT_LENOVO = 22;
+  ACCOUNT_JINLI = 23;
+  ACCOUNT_BAIDU = 25;
+  ACCOUNT_DANGLE = 26;
+  ACCOUNT_WEGAME = 27;
+  ACCOUNT_RPG_CUSTOM = 10000;
+}
+
+enum ChannelIdType {
+  CHANNEL_ID_NONE = 0;
+  CHANNEL_ID_MIHOYO = 1;
+  CHANNEL_ID_XIAOMI = 11;
+  CHANNEL_ID_COOLPAD = 12;
+  CHANNEL_ID_YYB = 13;
+  CHANNEL_ID_BILI = 14;
+  CHANNEL_ID_HUAWEI = 15;
+  CHANNEL_ID_MEIZU = 16;
+  CHANNEL_ID_360 = 17;
+  CHANNEL_ID_OPPO = 18;
+  CHANNEL_ID_VIVO = 19;
+  CHANNEL_ID_UC = 20;
+  CHANNEL_ID_WANDOJIA = 21;
+  CHANNEL_ID_LENOVO = 22;
+  CHANNEL_ID_JINLI = 23;
+  CHANNEL_ID_BAIDU = 25;
+  CHANNEL_ID_DANGLE = 26;
+  CHANNEL_ID_WEGAME = 27;
+}
+
+enum AvatarSlotType {
+  AVATAR_SLOT_1 = 0;
+  AVATAR_SLOT_2 = 1;
+  AVATAR_SLOT_3 = 2;
+}
+
+enum ItemType {
+  ITEM_TYPE_NONE = 0;
+  ITEM_AVATAR_CARD = 1;
+  ITEM_EQUIPMENT = 2;
+  ITEM_MATERIAL = 3;
+  ITEM_AVATAR_EXP = 4;
+  ITEM_RELIC = 5;
+}
+
+enum VirtualItemType {
+  VIRTUAL_ITEM_NONE = 0;
+  VIRTUAL_ITEM_HCOIN = 1;
+  VIRTUAL_ITEM_SCOIN = 2;
+  VIRTUAL_ITEM_MCOIN = 3;
+  VIRTUAL_ITEM_STAMINA = 11;
+  VIRTUAL_ITEM_EXP = 22;
+  VIRTUAL_ITEM_ROGUE_COIN = 31;
+  VIRTUAL_ITEM_ROGUE_STAMINA = 32;
+  VIRTUAL_ITEM_ROGUE_EXPLORE_EXP = 33;
+  VIRTUAL_ITEM_ACHIEVEMENT_EXP = 41;
+  VIRTUAL_ITEM_WARRIOR_EXP = 190;
+  VIRTUAL_ITEM_ROGUE_EXP = 191;
+  VIRTUAL_ITEM_MAGE_EXP = 192;
+  VIRTUAL_ITEM_SHAMAN_EXP = 193;
+  VIRTUAL_ITEM_WARLOCK_EXP = 194;
+  VIRTUAL_ITEM_KNIGHT_EXP = 195;
+  VIRTUAL_ITEM_PRIEST_EXP = 196;
+}
+
+enum BlackLimitLevel { BLACK_LIMIT_LEVEL_ALL = 0; }
+
+enum AreaType {
+  AREA_NONE = 0;
+  AREA_CN = 1;
+  AREA_JP = 2;
+  AREA_ASIA = 3;
+  AREA_WEST = 4;
+  AREA_KR = 5;
+  AREA_OVERSEAS = 6;
+}
+
+enum EntityType {
+  ENTITY_NONE = 0;
+  ENTITY_AVATAR = 1;
+  ENTITY_MONSTER = 2;
+  ENTITY_NPC = 3;
+  ENTITY_PROP = 4;
+  ENTITY_TRIGGER = 5;
+  ENTITY_ENV = 6;
+}
+
+enum LanguageType {
+  LANGUAGE_NONE = 0;
+  LANGUAGE_SC = 1;
+  LANGUAGE_TC = 2;
+  LANGUAGE_EN = 3;
+  LANGUAGE_KR = 4;
+  LANGUAGE_JP = 5;
+  LANGUAGE_FR = 6;
+  LANGUAGE_DE = 7;
+  LANGUAGE_ES = 8;
+  LANGUAGE_PT = 9;
+  LANGUAGE_RU = 10;
+  LANGUAGE_TH = 11;
+  LANGUAGE_VI = 12;
+  LANGUAGE_ID = 13;
+}
+
+enum PlatformType {
+  EDITOR = 0;
+  IOS = 1;
+  ANDROID = 2;
+  PC = 3;
+}
+
+enum ReloginType {
+  NO_KICK = 0;
+  FORCE_KICK = 1;
+  IDLE_KICK = 2;
+}
+
+enum AvatarType {
+  AVATAR_TYPE_NONE = 0;
+  AVATAR_TRIAL_TYPE = 1;
+  AVATAR_LIMIT_TYPE = 2;
+  AVATAR_FORMAL_TYPE = 3;
+}
+
+enum HeroBasicType {
+  None = 0;
+  BoyWarrior = 8001;
+  GirlWarrior = 8002;
+  BoyKnight = 8003;
+  GirlKnight = 8004;
+  BoyRogue = 8005;
+  GirlRogue = 8006;
+  BoyMage = 8007;
+  GirlMage = 8008;
+  BoyShaman = 8009;
+  GirlShaman = 8010;
+  BoyWarlock = 8011;
+  GirlWarlock = 8012;
+  BoyPriest = 8013;
+  GirlPriest = 8014;
+}
+
+enum Gender {
+  GenderNone = 0;
+  GenderMan = 1;
+  GenderWoman = 2;
+}
+
+enum ProductType {
+  PRODUCT_NONE = 0;
+  PRODUCT_NORMAL = 1;
+  PRODUCT_LIMIT = 2;
+}
+
+enum ProductGiftType {
+  PRODUCT_GIFT_NONE = 0;
+  PRODUCT_GIFT_HCOIN = 1;
+  PRODUCT_GIFT_SUBSCRIPTION = 2;
+}
+
+enum FeatureSwitchType {
+  FEATURE_SWITCH_NONE = 0;
+  FEATURE_SWITCH_SHOP = 1;
+  FEATURE_SWITCH_LINEUP_NAME = 2;
+}
+
+
+
+message BattleOp {
+  uint32 turn_counter = 1;
+  uint32 state = 2;
+  uint32 action_entity_id = 3;
+  uint32 target_entity_id = 4;
+  uint32 op_type = 5;
+  uint32 skill_index = 6;
+  uint32 operation_counter = 7;
+}
+
+message BattleEquipment {
+  uint32 id = 1;
+  uint32 level = 2;
+  uint32 promotion = 3;
+  uint32 rank = 4;
+}
+
+message BattleRelic {
+  uint32 id = 1;
+  uint32 level = 2;
+  uint32 main_affix_id = 3;
+  repeated RelicAffix sub_affix_list = 4;
+  uint32 unique_id = 5;
+}
+
+message AvatarSkillTree {
+  uint32 point_id = 1;
+  uint32 level = 2;
+}
+
+message RelicAffix {
+  uint32 affix_id = 1;
+  uint32 cnt = 2;
+  uint32 step = 3;
+}
+
+message BattleAvatar {
+  AvatarType avatar_type = 1;
+  uint32 id = 2;
+  uint32 level = 3;
+  uint32 rank = 4;
+  uint32 index = 5;
+  repeated AvatarSkillTree skilltree_list = 6;
+  repeated BattleEquipment equipment_list = 7;
+  uint32 hp = 8;
+  uint32 sp = 9;
+  uint32 promotion = 10;
+  repeated BattleRelic relic_list = 11;
+}
+
+message BattleMonsterWave { repeated uint32 monster_id_list = 1; }
+
+message BattleBuff {
+  uint32 id = 1;
+  uint32 level = 2;
+  uint32 owner_index = 3;
+  uint32 wave_flag = 4;
+  repeated uint32 target_index_list = 5;
+  map<string, float> dynamic_values = 6;
+}
+
+message BattleLineup {
+  repeated BattleAvatar avatar_list = 1;
+  repeated BattleMonsterWave monster_wave_list = 2;
+  repeated BattleBuff buff_list = 3;
+  repeated HeroPath hero_path_list = 4;
+  repeated uint32 battle_scoring_list = 5;
+}
+
+message ClientTurnSnapshot {
+  uint32 turn_counter = 1;
+  uint32 random_counter = 2;
+  uint32 anim_event_counter = 3;
+  repeated CharacterSnapshot snapshot_list = 4;
+  repeated AnimEventSnapshot anim_event_list = 5;
+}
+
+message GamecoreConfig {
+  bool is_skip_verify = 1;
+  uint32 max_turn_cnt = 2;
+  bool is_auto_fight = 3;
+  string csv_path = 4;
+}
+
+message BattleBuffMsg {
+  repeated uint32 buff_id_list = 1;
+  repeated uint32 buff_index_list = 2;
+  repeated uint32 buff_level_list = 3;
+  repeated uint32 buff_flag_list = 4;
+}
+
+message BattleReplay {
+  uint32 version = 1;
+  uint32 logic_random_seed = 2;
+  uint32 stage_id = 3;
+  BattleLineup lineup = 4;
+  repeated BattleOp op_list = 5;
+  bytes turn_snapshot_hash = 6;
+  uint32 maze_plane_id = 7;
+  repeated uint32 extra_ability_list = 8;
+  bool is_ai_consider_ultra_skill = 9;
+  BattleCheckStrategyType check_strategy = 10;
+  BattleModuleType battle_module_type = 11;
+  repeated ClientTurnSnapshot turn_snapshot_list = 21;
+  string local_level_path = 22;
+  string debug_extra_info = 23;
+  GamecoreConfig config = 24;
+  bytes game_core_log_encode = 26;
+  uint32 rounds_limit = 27;
+  repeated BattleReplayStringHash log_string_hash = 28;
+  uint32 plane_id = 29;
+  uint32 floor_id = 30;
+  uint32 battle_area_group_id = 31;
+  uint32 battle_area_id = 32;
+}
+
+message BattleReplayStringHash {
+  int32 hash = 1;
+  string value = 2;
+}
+
+message AvatarProperty {
+  double max_hp = 1;
+  double attack = 2;
+  double defence = 3;
+  double speed = 4;
+  double left_hp = 5;
+  double left_sp = 6;
+  double max_sp = 7;
+}
+
+message EquipmentProperty {
+  uint32 id = 1;
+  uint32 rank = 2;
+  uint32 promotion = 3;
+  uint32 level = 4;
+}
+
+message AttackDamageProperty {
+  string attack_type = 1;
+  double damage = 2;
+}
+
+message SkillUseProperty {
+  uint32 skill_id = 1;
+  string skill_type = 2;
+  uint32 skill_level = 3;
+  uint32 skill_use_count = 4;
+}
+
+message SpAddSource {
+  string source = 1;
+  uint32 sp_add = 2;
+}
+
+message AvatarBattleInfo {
+  AvatarType avatar_type = 1;
+  uint32 id = 2;
+  uint32 avatar_level = 3;
+  uint32 avatar_rank = 4;
+  uint32 avatar_promotion = 5;
+  AvatarProperty avatar_status = 6;
+  repeated AvatarSkillTree avatar_skill = 7;
+  repeated EquipmentProperty avatar_equipment = 8;
+  uint32 total_turns = 9;
+  double total_damage = 10;
+  double total_heal = 11;
+  double total_damage_taken = 12;
+  double total_hp_recover = 13;
+  double total_sp_cost = 14;
+  uint32 stage_id = 15;
+  uint32 stage_type = 16;
+  double total_break_damage = 17;
+  repeated AttackDamageProperty attack_type_damage = 18;
+  repeated AttackDamageProperty attack_type_break_damage = 19;
+  repeated AttackDamageProperty attack_type_max_damage = 20;
+  repeated SkillUseProperty skill_times = 21;
+  double delay_cumulate = 22;
+  uint32 total_sp_add = 23;
+  repeated SpAddSource sp_add_source = 24;
+  uint32 total_bp_cost = 25;
+  uint32 die_times = 26;
+  uint32 revive_times = 27;
+  uint32 break_times = 28;
+  uint32 extra_turns = 29;
+  double total_shield = 30;
+  double total_shield_taken = 31;
+  double total_shield_damage = 32;
+  AvatarProperty initial_status = 33;
+  repeated BattleRelic relics = 34;
+}
+
+message MonsterProperty {
+  double max_hp = 1;
+  double attack = 2;
+  double defence = 3;
+  double shield = 4;
+  double speed = 5;
+  double left_hp = 6;
+}
+
+message MonsterBattleInfo {
+  uint32 entity_id = 1;
+  uint32 monster_id = 2;
+  uint32 monster_template_id = 3;
+  uint32 monster_level = 4;
+  MonsterProperty monster_status = 5;
+  uint32 total_turns = 6;
+  double total_damage = 7;
+  double total_heal = 8;
+  double total_damage_taken = 9;
+  double total_stance_damage_taken = 10;
+  double total_hp_recover = 11;
+  uint32 stage_id = 12;
+  uint32 battle_id = 13;
+  uint32 monster_type = 14;
+  repeated AttackDamageProperty attack_type_damage = 15;
+  repeated SkillUseProperty skill_times = 16;
+  uint32 stage_type = 17;
+  double total_break_damage_taken = 18;
+  double delay_cumulate = 19;
+  DeathSource death_source = 20;
+  uint32 wave = 21;
+  int32 index_in_wave = 22;
+  uint32 phase = 23;
+  uint32 max_phase = 24;
+  BattleTag battle_tag = 25;
+}
+
+message BattleStatistics {
+  uint32 total_battle_turns = 1;
+  uint32 total_auto_turns = 2;
+  repeated uint32 avatar_id_list = 3;
+  uint32 ultra_cnt = 4;
+  double total_delay_cumulate = 5;
+  double cost_time = 6;
+  repeated AvatarBattleInfo avatar_battle_list = 7;
+  repeated MonsterBattleInfo monster_battle_list = 8;
+  uint32 round_cnt = 9;
+  uint32 cocoon_dead_wave = 10;
+  uint32 avatar_battle_turns = 11;
+  uint32 monster_battle_turns = 12;
+  map<string, float> custom_values = 13;
+  uint32 challenge_score = 14;
+  repeated uint32 battle_challenge_list = 15;
+}
+
+message HeroPath {
+  uint32 hero_path_type = 1;
+  uint32 level = 2;
+  uint32 exp = 3;
+}
+
+message BattleResult {
+  BattleCheckResultType retcode = 1;
+  BattleEndStatus end_status = 2;
+  BattleStatistics stt = 3;
+  bytes game_core_log_encode = 4;
+  map<string, uint32> tags = 5;
+  uint32 mismatch_turn_count = 6;
+}
+
+message CharacterSnapshot {
+  uint32 runtime_id = 1;
+  repeated uint64 properties = 2;
+}
+
+message AnimEventSnapshot {
+  string event_name = 1;
+  uint32 count = 2;
+}
+
+enum BattleCheckStrategyType {
+  BATTLE_CHECK_STRATEGY_IDENTICAL = 0;
+  BATTLE_CHECK_STRATEGY_SERVER = 1;
+  BATTLE_CHECK_STRATEGY_CLIENT = 2;
+}
+
+enum BattleCheckResultType {
+  BATTLE_CHECK_RESULT_SUCC = 0;
+  BATTLE_CHECK_RESULT_FAIL = 1;
+  BATTLE_CHECK_RESULT_PASS = 2;
+}
+
+enum BattleModuleType {
+  BATTLE_MODULE_MAZE = 0;
+  BATTLE_MODULE_CHALLENGE = 1;
+  BATTLE_MODULE_COCOON = 2;
+  BATTLE_MODULE_ROGUE = 3;
+  BATTLE_MODULE_CHALLENGE_ACTIVITY = 4;
+}
+
+enum DeathSource {
+  UNKNOWN = 0;
+  KILLED_BY_OTHERS = 1;
+  KILLED_BY_SELF = 2;
+  ESCAPE = 3;
+}
+
+enum BattleTag {
+  TAG_NONE = 0;
+  TAG_HIDE_NPC_MONSTER = 1;
+}
+
+enum BattleEndStatus {
+  BATTLE_END_NONE = 0;
+  BATTLE_END_WIN = 1;
+  BATTLE_END_LOSE = 2;
+  BATTLE_END_QUIT = 3;
+}
+
+enum Retcode {
+  RET_SUCC = 0;
+  RET_FAIL = 1;
+  RET_SERVER_INTERNAL_ERROR = 2;
+  RET_TIMEOUT = 3;
+  RET_REPEATED_REQ = 4;
+  RET_REQ_PARA_INVALID = 5;
+  RET_PLAYER_DATA_ERROR = 6;
+  RET_PLAYER_CLIENT_PAUSED = 7;
+  RET_FUNC_CHECK_FAILED = 8;
+  RET_FEATURE_SWITCH_CLOSED = 9;
+  RET_REPEATE_LOGIN = 1000;
+  RET_RETRY_LOGIN = 1001;
+  RET_WAIT_LOGIN = 1002;
+  RET_NOT_IN_WHITE_LIST = 1003;
+  RET_IN_BLACK_LIST = 1004;
+  RET_ACCOUNT_VERIFY_ERROR = 1005;
+  RET_ACCOUNT_PARA_ERROR = 1006;
+  RET_ANTI_ADDICT_LOGIN = 1007;
+  RET_CHECK_SUM_ERROR = 1008;
+  RET_REACH_MAX_PLAYER_NUM = 1009;
+  RET_ALREADY_REGISTERED = 1010;
+  RET_GENDER_ERROR = 1011;
+  SET_NICKNAME_RET_CALLBACK_PROCESSING = 1012;
+  RET_IN_GM_BIND_ACCESS = 1013;
+  RET_QUEST_REWARD_ALREADY_TAKEN = 1100;
+  RET_QUEST_NOT_ACCEPT = 1101;
+  RET_QUEST_NOT_FINISH = 1102;
+  RET_QUEST_STATUS_ERROR = 1103;
+  RET_ACHIEVEMENT_LEVEL_NOT_REACH = 1104;
+  RET_ACHIEVEMENT_LEVEL_ALREADY_TAKEN = 1105;
+  RET_AVATAR_NOT_EXIST = 1200;
+  RET_AVATAR_RES_EXP_NOT_ENOUGH = 1201;
+  RET_AVATAR_EXP_REACH_PROMOTION_LIMIT = 1202;
+  RET_AVATAR_REACH_MAX_PROMOTION = 1203;
+  RET_SKILLTREE_CONFIG_NOT_EXIST = 1204;
+  RET_SKILLTREE_ALREADY_UNLOCK = 1205;
+  RET_SKILLTREE_PRE_LOCKED = 1206;
+  RET_SKILLTREE_LEVEL_NOT_MEET = 1207;
+  RET_SKILLTREE_RANK_NOT_MEET = 1208;
+  RET_AVATAR_DRESS_NO_EQUIPMENT = 1209;
+  RET_AVATAR_EXP_ITEM_NOT_EXIST = 1210;
+  RET_SKILLTREE_POINT_UNLOCK = 1211;
+  RET_SKILLTREE_POINT_LEVEL_UPGRADE_NOT_MATCH = 1212;
+  RET_SKILLTREE_POINT_LEVEL_REACH_MAX = 1213;
+  RET_WORLD_LEVEL_NOT_MEET = 1214;
+  RET_PLAYER_LEVEL_NOT_MEET = 1215;
+  RET_AVATAR_RANK_NOT_MATCH = 1216;
+  RET_AVATAR_RANK_REACH_MAX = 1217;
+  RET_HERO_BASIC_TYPE_NOT_MATCH = 1218;
+  RET_ITEM_NOT_EXIST = 1300;
+  RET_ITEM_COST_NOT_ENOUGH = 1301;
+  RET_ITEM_COST_TOO_MUCH = 1302;
+  RET_ITEM_NO_COST = 1303;
+  RET_ITEM_NOT_ENOUGH = 1304;
+  RET_ITEM_INVALID = 1305;
+  RET_ITEM_CONFIG_NOT_EXIST = 1306;
+  RET_SCOIN_NOT_ENOUGH = 1307;
+  RET_ITEM_REWARD_EXCEED_LIMIT = 1308;
+  RET_ITEM_INVALID_USE = 1309;
+  RET_ITEM_USE_CONFIG_NOT_EXIST = 1310;
+  RET_REWARD_CONFIG_NOT_EXIST = 1311;
+  RET_ITEM_EXCEED_LIMIT = 1312;
+  RET_ITEM_COUNT_INVALID = 1313;
+  RET_ITEM_USE_TARGET_TYPE_INVALID = 1314;
+  RET_ITEM_USE_SATIETY_FULL = 1315;
+  RET_ITEM_COMPOSE_NOT_EXIST = 1316;
+  RET_RELIC_COMPOSE_NOT_EXIST = 1317;
+  RET_ITEM_CAN_NOT_SELL = 1318;
+  RET_ITEM_SELL_EXCEDD_LIMIT = 1319;
+  RET_EQUIPMENT_ALREADY_DRESSED = 1350;
+  RET_EQUIPMENT_NOT_EXIST = 1351;
+  RET_EQUIPMENT_REACH_LEVEL_LIMIT = 1352;
+  RET_EQUIPMENT_CONSUME_SELF = 1353;
+  RET_EQUIPMENT_ALREADY_LOCKED = 1354;
+  RET_EQUIPMENT_ALREADY_UNLOCKED = 1355;
+  RET_EQUIPMENT_LOCKED = 1356;
+  RET_EQUIPMENT_SELECT_NUM_OVER_LIMIT = 1357;
+  RET_EQUIPMENT_RANK_UP_MUST_CONSUME_SAME_TID = 1358;
+  RET_EQUIPMENT_PROMOTION_REACH_MAX = 1359;
+  RET_EQUIPMENT_RANK_UP_REACH_MAX = 1360;
+  RET_EQUIPMENT_LEVEL_REACH_MAX = 1361;
+  RET_EQUIPMENT_EXCEED_LIMIT = 1362;
+  RET_RELIC_NOT_EXIST = 1363;
+  RET_RELIC_REACH_LEVEL_LIMIT = 1364;
+  RET_RELIC_CONSUME_SELF = 1365;
+  RET_RELIC_ALREADY_DRESSED = 1366;
+  RET_RELIC_LOCKED = 1367;
+  RET_RELIC_ALREADY_LOCKED = 1368;
+  RET_RELIC_ALREADY_UNLOCKED = 1369;
+  RET_RELIC_LEVEL_IS_NOT_ZERO = 1370;
+  RET_LINEUP_INVALID_INDEX = 1400;
+  RET_LINEUP_INVALID_MEMBER_POS = 1401;
+  RET_LINEUP_SWAP_NOT_EXIST = 1402;
+  RET_LINEUP_AVATAR_ALREADY_IN = 1403;
+  RET_LINEUP_CREATE_AVATAR_ERROR = 1404;
+  RET_LINEUP_AVATAR_INIT_ERROR = 1405;
+  RET_LINEUP_NOT_EXIST = 1406;
+  RET_LINEUP_ONLY_ONE_MEMBER = 1407;
+  RET_LINEUP_SAME_LEADER_SLOT = 1408;
+  RET_LINEUP_NO_LEADER_SELECT = 1409;
+  RET_LINEUP_SWAP_SAME_SLOT = 1410;
+  RET_LINEUP_AVATAR_NOT_EXIST = 1411;
+  RET_LINEUP_TRIAL_AVATAR_CAN_NOT_QUIT = 1412;
+  RET_LINEUP_VIRTUAL_LINEUP_PLANE_NOT_MATCH = 1413;
+  RET_LINEUP_NOT_VALID_LEADER = 1414;
+  RET_LINEUP_SAME_INDEX = 1415;
+  RET_LINEUP_IS_EMPTY = 1416;
+  RET_LINEUP_NAME_FORMAT_ERROR = 1417;
+  RET_LINEUP_TYPE_NOT_MATCH = 1418;
+  RET_LINEUP_REPLACE_ALL_FAILED = 1419;
+  RET_LINEUP_NOT_ALLOW_EDIT = 1420;
+  RET_LINEUP_AVATAR_IS_ALIVE = 1421;
+  RET_MAIL_NOT_EXIST = 1700;
+  RET_MAIL_RANGE_INVALID = 1701;
+  RET_MAIL_MAIL_ID_INVALID = 1702;
+  RET_MAIL_NO_MAIL_TAKE_ATTACHMENT = 1703;
+  RET_MAIL_NO_MAIL_TO_DEL = 1704;
+  RET_STAGE_SETTLE_ERROR = 1800;
+  RET_STAGE_CONFIG_NOT_EXIST = 1801;
+  RET_STAGE_NOT_FOUND = 1802;
+  RET_STAGE_COCOON_PROP_NOT_VALID = 1804;
+  RET_STAGE_COCOON_WAVE_NOT_VALID = 1805;
+  RET_STAGE_PROP_ID_NOT_EQUAL = 1806;
+  RET_STAGE_COCOON_WAVE_OVER = 1807;
+  RET_STAGE_WEEK_COCOON_OVER_CNT = 1808;
+  RET_STAGE_COCOON_NOT_OPEN = 1809;
+  RET_CHAPTER_LOCK = 1900;
+  RET_CHAPTER_CHALLENGE_NUM_NOT_ENOUGH = 1901;
+  RET_CHAPTER_REWARD_ID_NOT_EXIST = 1902;
+  RET_CHAPTER_REWARD_ALREADY_TAKEN = 1903;
+  RET_BATTLE_STAGE_NOT_MATCH = 2000;
+  RET_IN_BATTLE_NOW = 2001;
+  RET_BATTLE_CHEAT = 2002;
+  RET_BATTLE_FAIL = 2003;
+  RET_BATTLE_NO_LINEUP = 2004;
+  RET_BATTLE_LINEUP_EMPTY = 2005;
+  RET_BATTLE_VERSION_NOT_MATCH = 2006;
+  RET_BATTLE_QUIT_BY_SERVER = 2007;
+  RET_LACK_EXCHANGE_STAMINA_TIMES = 2100;
+  RET_LACK_STAMINA = 2101;
+  RET_STAMINA_FULL = 2102;
+  RET_AUTHKEY_SIGN_TYPE_ERROR = 2103;
+  RET_AUTHKEY_SIGN_VER_ERROR = 2104;
+  RET_NICKNAME_FORMAT_ERROR = 2105;
+  RET_SENSITIVE_WORDS = 2106;
+  RET_LEVEL_REWARD_HAS_TAKEN = 2107;
+  RET_LEVEL_REWARD_LEVEL_ERROR = 2108;
+  RET_LANGUAGE_INVALID = 2109;
+  RET_MAZE_NOT_FINISH = 2200;
+  RET_MAZE_LACK_TICKET = 2201;
+  RET_MAZE_NOT_UNLOCK = 2202;
+  RET_MAZE_DIFFICULTY_LIMIT = 2203;
+  RET_MAZE_NO_ABILITY = 2204;
+  RET_MAZE_NO_PLANE = 2205;
+  RET_MAZE_STAGE_DISMATCH = 2206;
+  RET_MAZE_MAP_NOT_EXIST = 2207;
+  RET_MAZE_TYPE_NOT_EXIST = 2208;
+  RET_MAZE_ALREADY_FINISH = 2209;
+  RET_MAZE_PROP_NOT_EXIST = 2210;
+  RET_MAZE_POSITION_TOO_FAR = 2211;
+  RET_MAZE_SKILL_CAST_CNT_REACH_MAX = 2212;
+  RET_MAZE_MP_NOT_ENOUGH = 2213;
+  RET_SPRING_NOT_ENABLE = 2214;
+  RET_SPRING_REFRESH_IN_CD = 2215;
+  RET_SPRING_TOO_FAR = 2216;
+  RET_MAZE_NO_FLOOR = 2217;
+  RET_NOT_IN_MAZE = 2218;
+  RET_PLANE_ID_NOT_MATCH = 2219;
+  RET_FLOOR_ID_NOT_MATCH = 2220;
+  RET_SAVEPOINTS_TIMES_ZERO = 2221;
+  RET_MAZE_TIME_OF_DAY_TYPE_IS_SAME = 2222;
+  RET_MAZE_TIME_OF_DAY_TYPE_ERROR = 2223;
+  RET_PLOT_NOT_UNLOCK = 2300;
+  RET_MISSION_NOT_EXIST = 2400;
+  RET_MISSION_ALREADY_DONE = 2401;
+  RET_DAILY_TASK_NOT_FINISH = 2402;
+  RET_DAILY_TASK_REWARD_HAS_TAKEN = 2403;
+  RET_MISSION_NOT_FINISH = 2404;
+  RET_MISSION_NOT_DOING = 2405;
+  RET_MISSION_FINISH_WAY_NOT_MATCH = 2406;
+  RET_MISSION_SCENE_NOT_MATCH = 2407;
+  RET_ADVENTURE_MAP_NOT_EXIST = 2500;
+  RET_SCENE_ENTITY_NOT_EXIST = 2600;
+  RET_NOT_IN_SCENE = 2601;
+  RET_SCENE_MONSTER_NOT_EXIST = 2602;
+  RET_INTERACT_CONFIG_NOT_EXIST = 2603;
+  RET_UNSUPPORTED_PROP_STATE = 2604;
+  RET_SCENE_ENTRY_ID_NOT_MATCH = 2605;
+  RET_ASSIST_MONSTER_COUNT_LIMIT = 2607;
+  RET_SCENE_USE_SKILL_FAIL = 2608;
+  RET_PROP_IS_HIDDEN = 2609;
+  RET_LOADING_SUCC_ALREADY = 2610;
+  RET_SCENE_ENTITY_TYPE_INVALID = 2611;
+  RET_INTERACT_TYPE_INVALID = 2612;
+  RET_INTERACT_NOT_IN_REGION = 2613;
+  RET_INTERACT_SUB_TYPE_INVALID = 2614;
+  RET_NOT_LEADER_ENTITY = 2615;
+  RET_MONSTER_IS_NOT_FARM_ELEMENT = 2616;
+  RET_MONSTER_CONFIG_NOT_EXIST = 2617;
+  RET_AVATAR_HP_ALREADY_FULL = 2618;
+  RET_BUY_TIMES_LIMIT = 2700;
+  RET_BUY_LIMIT_TYPE = 2701;
+  RET_SHOP_NOT_OPEN = 2702;
+  RET_GOODS_NOT_OPEN = 2703;
+  RET_TUTORIAL_NOT_UNLOCK = 2751;
+  RET_TUTORIAL_UNLOCK_ALREADY = 2752;
+  RET_TUTORIAL_FINISH_ALREADY = 2753;
+  RET_TUTORIAL_PRE_NOT_UNLOCK = 2754;
+  RET_TUTORIAL_PLAYER_LEVEL_NOT_MATCH = 2755;
+  RET_TUTORIAL_TUTORIAL_NOT_FOUND = 2756;
+  RET_CHALLENGE_NOT_EXIST = 2801;
+  RET_CHALLENGE_NOT_UNLOCK = 2802;
+  RET_CHALLENGE_ALREADY = 2803;
+  RET_CHALLENGE_LINEUP_EDIT_FORBIDDEN = 2804;
+  RET_CHALLENGE_LINEUP_EMPTY = 2805;
+  RET_CHALLENGE_NOT_DOING = 2806;
+  RET_CHALLENGE_NOT_FINISH = 2807;
+  RET_CHALLENGE_TARGET_NOT_FINISH = 2808;
+  RET_CHALLENGE_TARGET_REWARD_TAKEN = 2809;
+  RET_CHALLENGE_TIME_NOT_VALID = 2810;
+  RET_BASIC_TYPE_ALREADY = 2850;
+  RET_NO_BASIC_TYPE = 2851;
+  RET_NOT_CHOOSE_BASIC_TYPE = 2852;
+  RET_NOT_FUNC_CLOSE = 2853;
+  RET_ROGUE_STATUS_NOT_MATCH = 2901;
+  RET_ROGUE_SELECT_BUFF_NOT_EXIST = 2902;
+  RET_ROGUE_COIN_NOT_ENOUGH = 2903;
+  RET_ROGUE_STAMINA_NOT_ENOUGH = 2904;
+  RET_ROGUE_COUNT_INVALID = 2905;
+  RET_ROGUE_PROP_ALREADY_USED = 2906;
+  RET_ROGUE_RECORD_ALREADY_SAVED = 2907;
+  RET_ROGUE_ROLL_BUFF_MAX_COUNT = 2908;
+  RET_ROGUE_PICK_AVATAR_INVALID = 2909;
+  RET_ROGUE_QUEST_EXPIRE = 2910;
+  RET_ROGUE_QUEST_REWARD_ALREADY = 2911;
+  RET_MISSION_EVENT_CONFIG_NOT_EXIST = 2951;
+  RET_MISSION_EVENT_NOT_CLIENT = 2952;
+  RET_MISSION_EVENT_FINISHED = 2953;
+  RET_MISSION_EVENT_DOING = 2954;
+  RET_HAS_CHALLENGE_MISSION_EVENT = 2955;
+  RET_NOT_CHALLENGE_MISSION_EVENT = 2956;
+  RET_GACHA_ID_NOT_EXIST = 3001;
+  RET_GACHA_NUM_INVALID = 3002;
+  RET_GACHA_FIRST_GACHA_MUST_ONE = 3003;
+  RET_GACHA_REQ_DUPLICATED = 3004;
+  RET_GACHA_NOT_IN_SCHEDULE = 3005;
+  RET_GACHA_NEWBIE_CLOSE = 3006;
+  RET_GACHA_TODAY_LIMITED = 3007;
+  RET_PRESTIGE_ID_NOT_EXIST = 3051;
+  RET_PRESTIGE_LEVEL_REWARD_LEVEL_ERROR = 3052;
+  RET_PRESTIGE_LEVEL_REWARD_HAS_TAKEN = 3053;
+  RET_PRESTIGE_MISSION_NOT_EXIST = 3054;
+  RET_PRESTIGE_MISSION_NOT_FINISHED = 3055;
+  RET_PRESTIGE_MISSION_REWARD_HAS_TAKEN = 3056;
+  RET_NOT_IN_RAID = 3101;
+  RET_RAID_DOING = 3102;
+  RET_NOT_PROP = 3103;
+  RET_RAID_ID_NOT_MATCH = 3104;
+  RET_RAID_RESTART_NOT_MATCH = 3105;
+  RET_RAID_LIMIT = 3106;
+  RET_RAID_AVATAR_LIST_EMPTY = 3107;
+  RET_RAID_AVATAR_NOT_EXIST = 3108;
+  RET_CHALLENGE_RAID_REWARD_ALREADY = 3109;
+  RET_CHALLENGE_RAID_SCORE_NOT_REACH = 3110;
+  RET_CHALLENGE_RAID_NOT_OPEN = 3111;
+  RET_RAID_FINISHED = 3112;
+  RET_TALK_EVENT_ALREADY_TAKEN = 3151;
+  RET_NPC_ALREADY_MEET = 3152;
+  RET_NPC_NOT_IN_CONFIG = 3153;
+  RET_DIALOGUE_GROUP_DISMATCH = 3154;
+  RET_DIALOGUE_EVENT_INVALID = 3155;
+  RET_EXPEDITION_CONFIG_NOT_EXIST = 3201;
+  RET_EXPEDITION_REWARD_CONFIG_NOT_EXIST = 3202;
+  RET_EXPEDITION_NOT_UNLOCKED = 3203;
+  RET_EXPEDITION_ALREADY_ACCEPTED = 3204;
+  RET_EXPEDITION_REPEATED_AVATAR = 3205;
+  RET_AVATAR_ALREADY_DISPATCHED = 3206;
+  RET_EXPEDITION_NOT_ACCEPTED = 3207;
+  RET_EXPEDITION_NOT_FINISH = 3208;
+  RET_EXPEDITION_ALREADY_FINISH = 3209;
+  RET_LOGIN_ACTIVITY_HAS_TAKEN = 3301;
+  RET_LOGIN_ACTIVITY_DAYS_LACK = 3302;
+  RET_MESSAGE_CONFIG_NOT_EXIST = 3501;
+  RET_MESSAGE_SECTION_NOT_TAKE = 3502;
+  RET_MESSAGE_GROUP_NOT_TAKE = 3503;
+  RET_MESSAGE_SECTION_ID_NOT_MATCH = 3504;
+  RET_MESSAGE_SECTION_CAN_NOT_FINISH = 3505;
+  RET_MESSAGE_ITEM_CAN_NOT_FINISH = 3506;
+}
+
+
+
+message LoginActivityData {
+  uint32 id = 1;
+  uint32 login_days = 2;
+  repeated uint32 has_taken_login_activity_reward_days_list = 3;
+}
+
+message GetLoginActivityCsReq {}
+
+message GetLoginActivityScRsp {
+  uint32 retcode = 1;
+  repeated LoginActivityData login_activity_list = 2;
+}
+
+message TakeLoginActivityRewardCsReq {
+  uint32 id = 1;
+  uint32 take_days = 2;
+}
+
+message TakeLoginActivityRewardScRsp {
+  uint32 retcode = 1;
+  uint32 id = 2;
+  uint32 take_days = 3;
+  ItemList reward = 4;
+}
+
+enum CmdActivityType {
+  CmdActivityTypeNone = 0;
+  CmdGetLoginActivityCsReq = 2601;
+  CmdGetLoginActivityScRsp = 2602;
+  CmdTakeLoginActivityRewardCsReq = 2603;
+  CmdTakeLoginActivityRewardScRsp = 2604;
+}
+
+
+
+message EnterAdventureCsReq { uint32 map_id = 1; }
+
+message EnterAdventureScRsp {
+  uint32 retcode = 1;
+  SceneInfo scene = 2;
+}
+
+enum CmdAdventureType {
+  CmdAdventureTypeNone = 0;
+  CmdEnterAdventureCsReq = 1301;
+  CmdEnterAdventureScRsp = 1302;
+}
+
+message ArchiveData {
+  repeated uint32 item_id_list = 1;
+  repeated uint32 monster_template_id_list = 2;
+}
+
+message GetArchiveDataCsReq {}
+
+message GetArchiveDataScRsp {
+  uint32 retcode = 1;
+  ArchiveData archive_data = 2;
+}
+
+message GetUpdatedArchiveDataCsReq {}
+
+message GetUpdatedArchiveDataScRsp {
+  uint32 retcode = 1;
+  ArchiveData archive_data = 2;
+}
+
+enum CmdArchiveType {
+  CmdArchiveTypeNone = 0;
+  CmdGetArchiveDataCsReq = 2301;
+  CmdGetArchiveDataScRsp = 2302;
+  CmdGetUpdatedArchiveDataCsReq = 2303;
+  CmdGetUpdatedArchiveDataScRsp = 2304;
+}
+
+
+
+
+message GetAvatarDataCsReq {
+  bool is_get_all = 1;
+  repeated uint32 base_avatar_id_list = 2;
+}
+
+message EquipRelic {
+  uint32 type = 1;
+  uint32 relic_unique_id = 2;
+}
+
+message Avatar {
+  uint32 base_avatar_id = 1;
+  uint32 exp = 2;
+  uint32 level = 3;
+  uint32 promotion = 4;
+  uint32 rank = 5;
+  repeated AvatarSkillTree skilltree_list = 6;
+  uint32 equipment_unique_id = 7;
+  repeated EquipRelic equip_relic_list = 8;
+}
+
+message GetAvatarDataScRsp {
+  uint32 retcode = 1;
+  repeated Avatar avatar_list = 2;
+  bool is_all = 3;
+}
+
+message AvatarExpUpCsReq {
+  uint32 base_avatar_id = 1;
+  ItemCostData item_cost = 2;
+}
+
+message AvatarExpUpScRsp {
+  uint32 retcode = 1;
+  repeated PileItem return_item_list = 2;
+}
+
+message UnlockSkilltreeCsReq {
+  uint32 point_id = 1;
+  uint32 level = 2;
+  repeated ItemCost item_list = 3;
+}
+
+message UnlockSkilltreeScRsp {
+  uint32 retcode = 1;
+  uint32 base_avatar_id = 2;
+  uint32 point_id = 3;
+  uint32 level = 4;
+}
+
+message PromoteAvatarCsReq {
+  uint32 base_avatar_id = 1;
+  repeated ItemCost item_list = 2;
+}
+
+message PromoteAvatarScRsp { uint32 retcode = 1; }
+
+message DressAvatarCsReq {
+  uint32 equipment_unique_id = 1;
+  uint32 base_avatar_id = 2;
+}
+
+message DressAvatarScRsp { uint32 retcode = 1; }
+
+message TakeOffEquipmentCsReq { uint32 base_avatar_id = 1; }
+
+message TakeOffEquipmentScRsp { uint32 retcode = 1; }
+
+message AddAvatarScNotify {
+  uint32 base_avatar_id = 1;
+  ItemList reward = 2;
+  AddAvatarSrc src = 3;
+}
+
+message RankUpAvatarCsReq {
+  uint32 base_avatar_id = 1;
+  uint32 rank = 2;
+  ItemCostData cost_data = 3;
+}
+
+message RankUpAvatarScRsp { uint32 retcode = 1; }
+
+message DressRelicAvatarCsReq {
+  uint32 relic_type = 1;
+  uint32 relic_unique_id = 2;
+  uint32 base_avatar_id = 3;
+}
+
+message DressRelicAvatarScRsp { uint32 retcode = 1; }
+
+message TakeOffRelicCsReq {
+  uint32 relic_type = 1;
+  uint32 base_avatar_id = 2;
+}
+
+message TakeOffRelicScRsp { uint32 retcode = 1; }
+
+enum CmdAvatarType {
+  CmdAvatarTypeNone = 0;
+  CmdGetAvatarDataCsReq = 301;
+  CmdGetAvatarDataScRsp = 302;
+  CmdAvatarExpUpCsReq = 303;
+  CmdAvatarExpUpScRsp = 304;
+  CmdUnlockSkilltreeCsReq = 305;
+  CmdUnlockSkilltreeScRsp = 306;
+  CmdPromoteAvatarCsReq = 307;
+  CmdPromoteAvatarScRsp = 308;
+  CmdDressAvatarCsReq = 309;
+  CmdDressAvatarScRsp = 310;
+  CmdTakeOffEquipmentCsReq = 311;
+  CmdTakeOffEquipmentScRsp = 312;
+  CmdAddAvatarScNotify = 313;
+  CmdRankUpAvatarCsReq = 314;
+  CmdRankUpAvatarScRsp = 315;
+  CmdDressRelicAvatarCsReq = 316;
+  CmdDressRelicAvatarScRsp = 317;
+  CmdTakeOffRelicCsReq = 318;
+  CmdTakeOffRelicScRsp = 319;
+}
+
+enum AddAvatarSrc {
+  ADD_AVATAR_SRC_NONE = 0;
+  ADD_AVATAR_SRC_GACHA = 1;
+}
+
+
+
+
+message PVEBattleResultCsReq {
+  uint32 stage_id = 1;
+  repeated BattleOp op_list = 2;
+  bytes turn_snapshot_hash = 3;
+  uint32 cost_time = 4;
+  string debug_extra_info = 5;
+  uint32 res_version = 6;
+  bool is_ai_consider_ultra_skill = 7;
+  BattleEndStatus end_status = 8;
+  BattleStatistics stt = 9;
+  uint32 battle_id = 10;
+}
+
+message PVEBattleResultScRsp {
+  uint32 retcode = 1;
+  uint32 stage_id = 2;
+  uint32 cur_finish_challenge = 3;
+  ItemList drop_data = 4;
+  uint32 avatar_exp_reward = 5;
+  string bin_ver = 6;
+  string res_ver = 7;
+  uint32 battle_id = 8;
+  BattleEndStatus end_status = 9;
+  ItemList extra_drop_data = 10;
+  bool check_identical = 11;
+  uint32 event_id = 12;
+  uint32 mismatch_turn_count = 13;
+}
+
+message QuitBattleCsReq {}
+
+message QuitBattleScRsp { uint32 retcode = 1; }
+
+message GetCurBattleInfoCsReq {}
+
+message GetCurBattleInfoScRsp {
+  uint32 retcode = 1;
+  uint32 stage_id = 2;
+  uint32 logic_random_seed = 3;
+  repeated BattleAvatar avatar_list = 4;
+  SceneBattleInfo battle_info = 5;
+  BattleEndStatus last_end_status = 6;
+  uint32 last_event_id = 7;
+}
+
+message SyncClientResVersionCsReq { uint32 res_version = 1; }
+
+message SyncClientResVersionScRsp {
+  uint32 retcode = 1;
+  uint32 res_version = 2;
+}
+
+message QuitBattleScNotify {}
+
+enum CmdBattleType {
+  CmdBattleTypeNone = 0;
+  CmdPVEBattleResultCsReq = 101;
+  CmdPVEBattleResultScRsp = 102;
+  CmdQuitBattleCsReq = 103;
+  CmdQuitBattleScRsp = 104;
+  CmdGetCurBattleInfoCsReq = 105;
+  CmdGetCurBattleInfoScRsp = 106;
+  CmdSyncClientResVersionCsReq = 107;
+  CmdSyncClientResVersionScRsp = 108;
+  CmdQuitBattleScNotify = 109;
+}
+
+
+
+
+
+message Challenge {
+  uint32 challenge_id = 1;
+  uint32 stars = 2;
+  uint32 taken_reward = 3;
+}
+
+message GetChallengeCsReq {}
+
+message GetChallengeScRsp {
+  uint32 retcode = 1;
+  repeated Challenge challenge_list = 2;
+}
+
+message StartChallengeCsReq { uint32 challenge_id = 1; }
+
+message StartChallengeScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  CurChallenge cur_challenge = 3;
+}
+
+message LeaveChallengeCsReq {}
+
+message LeaveChallengeScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+}
+
+message ChallengeSettleNotify {
+  uint32 challenge_id = 1;
+  bool is_win = 2;
+  ItemList reward = 3;
+  uint32 stars = 4;
+}
+
+message FinishChallengeCsReq { uint32 challenge_id = 1; }
+
+message FinishChallengeScRsp { uint32 retcode = 1; }
+
+message KillMonster {
+  uint32 monster_id = 1;
+  uint32 kill_num = 2;
+}
+
+message CurChallenge {
+  uint32 challenge_id = 1;
+  uint32 rounds = 2;
+  ChallengeStatus status = 3;
+  ExtraLineupType extra_lineup_type = 4;
+  repeated KillMonster kill_monster_list = 5;
+  uint32 dead_avatar_num = 6;
+}
+
+message GetCurChallengeCsReq {}
+
+message GetCurChallengeScRsp {
+  uint32 retcode = 1;
+  CurChallenge cur_challenge = 2;
+}
+
+message ChallengeLineupNotify { ExtraLineupType extra_lineup_type = 1; }
+
+message TakeChallengeTargetRewardCsReq {
+  uint32 challenge_id = 1;
+  repeated uint32 index_list = 2;
+}
+
+message TakeChallengeTargetRewardScRsp {
+  uint32 retcode = 1;
+  uint32 challenge_id = 2;
+  repeated uint32 taken_index_list = 3;
+  ItemList reward = 4;
+}
+
+enum CmdChallengeType {
+  CmdChallengeTypeNone = 0;
+  CmdGetChallengeCsReq = 1701;
+  CmdGetChallengeScRsp = 1702;
+  CmdStartChallengeCsReq = 1703;
+  CmdStartChallengeScRsp = 1704;
+  CmdLeaveChallengeCsReq = 1705;
+  CmdLeaveChallengeScRsp = 1706;
+  CmdChallengeSettleNotify = 1707;
+  CmdFinishChallengeCsReq = 1708;
+  CmdFinishChallengeScRsp = 1709;
+  CmdGetCurChallengeCsReq = 1710;
+  CmdGetCurChallengeScRsp = 1711;
+  CmdChallengeLineupNotify = 1712;
+  CmdTakeChallengeTargetRewardCsReq = 1713;
+  CmdTakeChallengeTargetRewardScRsp = 1714;
+}
+
+enum ChallengeStatus {
+  CHALLENGE_UNKNOWN = 0;
+  CHALLENGE_DOING = 1;
+  CHALLENGE_FINISH = 2;
+  CHALLENGE_FAILED = 3;
+}
+
+
+
+
+message Item {
+  uint32 item_id = 1;
+  uint32 num = 2;
+  uint32 level = 3;
+  uint32 rank = 4;
+  uint32 promotion = 5;
+  uint32 unique_id = 6;
+}
+
+message ItemList { repeated Item item_list = 1; }
+
+message PileItem {
+  uint32 item_id = 1;
+  uint32 item_num = 2;
+}
+
+message ItemCost {
+  oneof Item {
+    PileItem pile_item = 1;
+    uint32 equipment_unique_id = 2;
+    uint32 relic_unique_id = 3;
+  }
+}
+
+message ItemCostData { repeated ItemCost item_list = 1; }
+
+message SceneMonsterWave {
+  repeated uint32 monster_id_list = 1;
+  repeated ItemList drop_list = 2;
+}
+
+message SceneBattleInfo {
+  uint32 logic_random_seed = 1;
+  uint32 stage_id = 2;
+  repeated SceneMonsterWave monster_wave_list = 3;
+  repeated BattleAvatar battle_avatar_list = 4;
+  repeated BattleBuff buff_list = 5;
+  uint32 battle_id = 6;
+  repeated HeroPath hero_path_list = 7;
+  uint32 rounds_limit = 8;
+}
+
+enum MissionStatus {
+  MISSION_NONE = 0;
+  MISSION_DOING = 1;
+  MISSION_FINISH = 2;
+  MISSION_PREPARED = 3;
+}
+
+enum MessageSectionStatus {
+  MESSAGE_SECTION_NONE = 0;
+  MESSAGE_SECTION_DOING = 1;
+  MESSAGE_SECTION_FINISH = 2;
+}
+
+enum MessageGroupStatus {
+  MESSAGE_GROUP_NONE = 0;
+  MESSAGE_GROUP_DOING = 1;
+  MESSAGE_GROUP_FINISH = 2;
+}
+
+
+
+
+message DialogueEvent {
+  uint32 dialogue_group_id = 1;
+  repeated uint32 dialogue_event_id_list = 2;
+}
+
+message DialogueResultInfo {
+  oneof result {
+    ItemList item_result = 1;
+    RogueBuffList rogue_buff_result = 2;
+  }
+}
+
+message GetDialogueEventDataCsReq {}
+
+message GetDialogueEventDataScRsp {
+  uint32 retcode = 1;
+  repeated DialogueEvent dialogue_event_list = 2;
+}
+
+message SelectDialogueEventCsReq {
+  uint32 dialogue_group_id = 1;
+  uint32 dialogue_event_id = 2;
+}
+
+message SelectDialogueEventScRsp {
+  uint32 retcode = 1;
+  uint32 dialogue_group_id = 2;
+  uint32 dialogue_event_id = 3;
+  DialogueResultInfo result_info = 4;
+}
+
+message SyncDialogueEventDataScNotify {
+  repeated DialogueEvent dialogue_event_list = 1;
+}
+
+enum CmdDialogueType {
+  CmdDialogueTypeNone = 0;
+  CmdGetDialogueEventDataCsReq = 2401;
+  CmdGetDialogueEventDataScRsp = 2402;
+  CmdSelectDialogueEventCsReq = 2403;
+  CmdSelectDialogueEventScRsp = 2404;
+  CmdSyncDialogueEventDataScNotify = 2405;
+}
+
+
+
+message Expedition {
+  uint32 id = 1;
+  uint32 accept_time = 2;
+  uint32 duration = 3;
+  repeated uint32 avatar_id_list = 4;
+}
+
+message GetExpeditionDataCsReq {}
+
+message GetExpeditionDataScRsp {
+  uint32 retcode = 1;
+  uint32 team_count = 2;
+  repeated uint32 unlocked_expedition_id_list = 3;
+  repeated Expedition expedtion_list = 4;
+}
+
+message AcceptExpeditionCsReq { Expedition expedition = 1; }
+
+message AcceptExpeditionScRsp {
+  uint32 retcode = 1;
+  Expedition expedition = 2;
+}
+
+message CancelExpeditionCsReq { uint32 expedition_id = 1; }
+
+message CancelExpeditionScRsp {
+  uint32 retcode = 1;
+  uint32 expedition_id = 2;
+}
+
+message TakeExpeditionRewardCsReq { uint32 expedition_id = 1; }
+
+message TakeExpeditionRewardScRsp {
+  uint32 retcode = 1;
+  uint32 expedition_id = 2;
+  ItemList reward = 3;
+}
+
+enum CmdExpeditionType {
+  CmdExpeditionTypeNone = 0;
+  CmdGetExpeditionDataCsReq = 2501;
+  CmdGetExpeditionDataScRsp = 2502;
+  CmdAcceptExpeditionCsReq = 2503;
+  CmdAcceptExpeditionScRsp = 2504;
+  CmdCancelExpeditionCsReq = 2505;
+  CmdCancelExpeditionScRsp = 2506;
+  CmdTakeExpeditionRewardCsReq = 2507;
+  CmdTakeExpeditionRewardScRsp = 2508;
+}
+
+
+
+message GetGachaInfoCsReq {}
+
+message GachaInfo {
+  uint32 gacha_id = 1;
+  uint32 begin_time = 2;
+  uint32 end_time = 3;
+  string detail_webview = 4;
+  uint32 newbie_gacha_cnt = 5;
+  uint32 today_gacha_cnt = 6;
+}
+
+message GetGachaInfoScRsp {
+  uint32 retcode = 1;
+  repeated GachaInfo gacha_info_list = 2;
+  uint32 gacha_random = 3;
+  uint32 today_total_gacha_cnt = 4;
+  uint32 today_single_gacha_max_cnt = 5;
+  uint32 today_total_gacha_max_cnt = 6;
+}
+
+message DoGachaCsReq {
+  uint32 gacha_id = 1;
+  uint32 gacha_num = 2;
+  uint32 gacha_random = 3;
+  uint32 simulate_magic = 4;
+}
+
+message GachaItem {
+  Item gacha_item = 1;
+  ItemList transfer_item_list = 2;
+  bool is_new = 3;
+  ItemList token_item = 4;
+}
+
+message DoGachaScRsp {
+  uint32 retcode = 1;
+  uint32 gacha_id = 2;
+  uint32 gacha_num = 3;
+  repeated GachaItem gacha_item_list = 4;
+  uint32 new_gacha_random = 5;
+  uint32 newbie_gacha_cnt = 6;
+  uint32 today_gacha_cnt = 7;
+  uint32 today_total_gacha_cnt = 8;
+}
+
+enum CmdGachaType {
+  CmdGachaTypeNone = 0;
+  CmdGetGachaInfoCsReq = 1901;
+  CmdGetGachaInfoScRsp = 1902;
+  CmdDoGachaCsReq = 1903;
+  CmdDoGachaScRsp = 1904;
+}
+
+
+
+
+
+message GetBagCsReq {}
+
+message Equipment {
+  uint32 unique_id = 1;
+  uint32 tid = 2;
+  uint32 level = 3;
+  uint32 exp = 4;
+  uint32 rank = 5;
+  uint32 base_avatar_id = 6;
+  bool is_protected = 7;
+  uint32 promotion = 8;
+}
+
+message Relic {
+  uint32 unique_id = 1;
+  uint32 tid = 2;
+  uint32 level = 3;
+  uint32 exp = 4;
+  uint32 base_avatar_id = 5;
+  bool is_protected = 6;
+  uint32 main_affix_id = 7;
+  repeated RelicAffix sub_affix_list = 8;
+}
+
+message Material {
+  uint32 tid = 1;
+  uint32 num = 2;
+}
+
+message WaitDelResource {
+  uint32 tid = 1;
+  uint32 num = 2;
+}
+
+message GetBagScRsp {
+  uint32 retcode = 1;
+  repeated Equipment equipment_list = 2;
+  repeated Material material_list = 3;
+  repeated Relic relic_list = 4;
+  repeated Material rogue_item_list = 5;
+  repeated WaitDelResource wait_del_resource_list = 6;
+}
+
+message PromoteEquipmentCsReq {
+  uint32 equipment_unique_id = 1;
+  ItemCostData cost_data = 2;
+}
+
+message PromoteEquipmentScRsp { uint32 retcode = 1; }
+
+message LockEquipmentCsReq {
+  uint32 equipment_unique_id = 1;
+  bool is_lock = 2;
+}
+
+message LockEquipmentScRsp {
+  uint32 retcode = 1;
+  uint32 equipment_unique_id = 2;
+}
+
+message UseItemCsReq {
+  uint32 use_item_id = 1;
+  uint32 use_item_count = 2;
+  uint32 base_avatar_id = 3;
+  AvatarType use_avatar_type = 4;
+  uint32 optional_reward_id = 5;
+}
+
+message UseItemScRsp {
+  uint32 retcode = 1;
+  uint32 use_item_id = 2;
+  uint32 use_item_count = 3;
+  ItemList return_data = 4;
+}
+
+message RankUpEquipmentCsReq {
+  uint32 equipment_unique_id = 1;
+  repeated uint32 equipment_id_list = 2;
+}
+
+message RankUpEquipmentScRsp { uint32 retcode = 1; }
+
+message ExpUpEquipmentCsReq {
+  uint32 equipment_unique_id = 1;
+  ItemCostData cost_data = 2;
+}
+
+message ExpUpEquipmentScRsp {
+  uint32 retcode = 1;
+  repeated PileItem return_item_list = 2;
+}
+
+message ComposeItemCsReq {
+  uint32 compose_id = 1;
+  uint32 count = 2;
+}
+
+message ComposeItemScRsp {
+  uint32 retcode = 1;
+  uint32 compose_id = 2;
+  uint32 count = 3;
+  ItemList return_item_list = 4;
+}
+
+message ExpUpRelicCsReq {
+  uint32 relic_unique_id = 1;
+  ItemCostData cost_data = 2;
+}
+
+message ExpUpRelicScRsp {
+  uint32 retcode = 1;
+  repeated PileItem return_item_list = 2;
+}
+
+message LockRelicCsReq {
+  uint32 relic_unique_id = 1;
+  bool is_lock = 2;
+}
+
+message LockRelicScRsp {
+  uint32 retcode = 1;
+  uint32 relic_unique_id = 2;
+}
+
+message SellItemCsReq { ItemCostData cost_data = 1; }
+
+message SellItemScRsp {
+  uint32 retcode = 1;
+  ItemList return_item_list = 2;
+}
+
+message RechargeSuccNotify { ItemList item_list = 1; }
+
+enum CmdItemType {
+  CmdItemTypeNone = 0;
+  CmdGetBagCsReq = 501;
+  CmdGetBagScRsp = 502;
+  CmdPromoteEquipmentCsReq = 503;
+  CmdPromoteEquipmentScRsp = 504;
+  CmdLockEquipmentCsReq = 505;
+  CmdLockEquipmentScRsp = 506;
+  CmdUseItemCsReq = 507;
+  CmdUseItemScRsp = 508;
+  CmdRankUpEquipmentCsReq = 509;
+  CmdRankUpEquipmentScRsp = 510;
+  CmdExpUpEquipmentCsReq = 511;
+  CmdExpUpEquipmentScRsp = 512;
+  CmdComposeItemCsReq = 513;
+  CmdComposeItemScRsp = 514;
+  CmdExpUpRelicCsReq = 515;
+  CmdExpUpRelicScRsp = 516;
+  CmdLockRelicCsReq = 517;
+  CmdLockRelicScRsp = 518;
+  CmdSellItemCsReq = 519;
+  CmdSellItemScRsp = 520;
+  CmdRechargeSuccNotify = 521;
+}
+
+
+
+message GetStageLineupCsReq {}
+
+message StageLineup {
+  uint32 stage_type = 1;
+  uint32 lineup_index = 2;
+}
+
+message GetStageLineupScRsp {
+  uint32 retcode = 1;
+  repeated StageLineup stage_lineup_list = 2;
+}
+
+message LineupAvatar {
+  uint32 slot = 1;
+  AvatarType avatar_type = 2;
+  uint32 id = 3;
+  uint32 hp = 4;
+  uint32 sp = 5;
+  uint32 satiety = 6;
+}
+
+message LineupInfo {
+  repeated LineupAvatar avatar_list = 1;
+  bool is_virtual = 2;
+  uint32 plane_id = 3;
+  uint32 mp = 4;
+  uint32 leader_slot = 5;
+  uint32 index = 6;
+  ExtraLineupType extra_lineup_type = 7;
+  string name = 8;
+}
+
+message GetCurLineupDataCsReq {}
+
+message GetCurLineupDataScRsp {
+  uint32 retcode = 1;
+  LineupInfo lineup = 2;
+}
+
+message JoinLineupCsReq {
+  uint32 base_avatar_id = 1;
+  bool is_virtual = 2;
+  uint32 plane_id = 3;
+  uint32 slot = 4;
+  uint32 index = 5;
+  ExtraLineupType extra_lineup_type = 6;
+}
+
+message JoinLineupScRsp { uint32 retcode = 1; }
+
+message QuitLineupCsReq {
+  uint32 base_avatar_id = 1;
+  bool is_virtual = 2;
+  uint32 plane_id = 3;
+  uint32 index = 4;
+  ExtraLineupType extra_lineup_type = 5;
+}
+
+message QuitLineupScRsp {
+  uint32 retcode = 1;
+  uint32 base_avatar_id = 2;
+  bool is_mainline = 3;
+  uint32 plane_id = 4;
+  bool is_virtual = 5;
+}
+
+message SwapLineupCsReq {
+  bool is_virtual = 1;
+  uint32 plane_id = 2;
+  uint32 src_slot = 3;
+  uint32 dst_slot = 4;
+  uint32 index = 5;
+  ExtraLineupType extra_lineup_type = 6;
+}
+
+message SwapLineupScRsp { uint32 retcode = 1; }
+
+message SyncLineupNotify {
+  LineupInfo lineup = 1;
+  repeated SyncLineupReason reason_list = 2;
+}
+
+message GetLineupAvatarDataCsReq {}
+
+message LineupAvatarData {
+  AvatarType avatar_type = 1;
+  uint32 id = 2;
+  uint32 hp = 3;
+}
+
+message GetLineupAvatarDataScRsp {
+  uint32 retcode = 1;
+  repeated LineupAvatarData avatar_data_list = 2;
+}
+
+message ChangeLineupLeaderCsReq { uint32 slot = 1; }
+
+message ChangeLineupLeaderScRsp {
+  uint32 retcode = 1;
+  uint32 slot = 2;
+}
+
+message SwitchLineupIndexCsReq { uint32 index = 1; }
+
+message SwitchLineupIndexScRsp {
+  uint32 retcode = 1;
+  uint32 index = 2;
+}
+
+message SetLineupNameCsReq {
+  string name = 1;
+  uint32 index = 2;
+}
+
+message SetLineupNameScRsp {
+  uint32 retcode = 1;
+  string name = 2;
+  uint32 index = 3;
+}
+
+message GetAllLineupDataCsReq {}
+
+message GetAllLineupDataScRsp {
+  uint32 retcode = 1;
+  uint32 cur_index = 2;
+  repeated LineupInfo lineup_list = 3;
+}
+
+message VirtualLineupDestroyNotify { uint32 plane_id = 1; }
+
+enum CmdLineupType {
+  CmdLineupTypeNone = 0;
+  CmdGetStageLineupCsReq = 701;
+  CmdGetStageLineupScRsp = 702;
+  CmdGetCurLineupDataCsReq = 703;
+  CmdGetCurLineupDataScRsp = 704;
+  CmdJoinLineupCsReq = 705;
+  CmdJoinLineupScRsp = 706;
+  CmdQuitLineupCsReq = 707;
+  CmdQuitLineupScRsp = 708;
+  CmdSwapLineupCsReq = 709;
+  CmdSwapLineupScRsp = 710;
+  CmdSyncLineupNotify = 711;
+  CmdGetLineupAvatarDataCsReq = 712;
+  CmdGetLineupAvatarDataScRsp = 713;
+  CmdChangeLineupLeaderCsReq = 714;
+  CmdChangeLineupLeaderScRsp = 715;
+  CmdSwitchLineupIndexCsReq = 716;
+  CmdSwitchLineupIndexScRsp = 717;
+  CmdSetLineupNameCsReq = 718;
+  CmdSetLineupNameScRsp = 719;
+  CmdGetAllLineupDataCsReq = 720;
+  CmdGetAllLineupDataScRsp = 721;
+  CmdVirtualLineupDestroyNotify = 722;
+}
+
+enum ExtraLineupType {
+  LINEUP_NONE = 0;
+  LINEUP_CHALLENGE = 1;
+  LINEUP_ROGUE = 2;
+  LINEUP_CHALLENGE_2 = 3;
+  LINEUP_CHALLENGE_3 = 4;
+  LINEUP_ROGUE_CHALLENGE = 5;
+}
+
+enum SyncLineupReason {
+  SYNC_REASON_NONE = 0;
+  SYNC_REASON_MP_ADD = 1;
+  SYNC_REASON_HP_ADD = 2;
+}
+
+
+
+message GetMailCsReq {
+  uint32 start = 1;
+  uint32 stop = 2;
+}
+
+message ClientMail {
+  uint32 id = 1;
+  uint32 template_id = 2;
+  string title = 3;
+  string content = 4;
+  string sender = 5;
+  uint32 time = 6;
+  ItemList attachment = 7;
+  bool is_read = 8;
+  uint32 expire_time = 9;
+  repeated string para_list = 10;
+}
+
+message GetMailScRsp {
+  uint32 retcode = 1;
+  repeated ClientMail mail_list = 2;
+  bool is_end = 3;
+  uint32 total_num = 4;
+  uint32 start = 5;
+  repeated ClientMail notice_mail_list = 6;
+}
+
+message MarkReadMailCsReq { uint32 id = 1; }
+
+message MarkReadMailScRsp {
+  uint32 retcode = 1;
+  uint32 id = 2;
+}
+
+message DelMailCsReq { repeated uint32 id_list = 1; }
+
+message DelMailScRsp {
+  uint32 retcode = 1;
+  repeated uint32 id_list = 2;
+}
+
+message TakeMailAttachmentCsReq { repeated uint32 mail_id_list = 1; }
+
+message ClientMailAttachmentItem {
+  uint32 mail_id = 1;
+  uint32 item_id = 2;
+}
+
+message TakeMailAttachmentScRsp {
+  uint32 retcode = 1;
+  repeated uint32 succ_mail_id_list = 2;
+  ItemList attachment = 3;
+  repeated ClientMailAttachmentItem fail_mail_list = 4;
+}
+
+message NewMailScNotify { repeated uint32 mail_id_list = 1; }
+
+enum CmdMailType {
+  CmdMailTypeNone = 0;
+  CmdGetMailCsReq = 801;
+  CmdGetMailScRsp = 802;
+  CmdMarkReadMailCsReq = 803;
+  CmdMarkReadMailScRsp = 804;
+  CmdDelMailCsReq = 805;
+  CmdDelMailScRsp = 806;
+  CmdTakeMailAttachmentCsReq = 807;
+  CmdTakeMailAttachmentScRsp = 808;
+  CmdNewMailScNotify = 809;
+}
+
+
+
+
+message MazeFloor {
+  uint32 floor_id = 1;
+  SceneInfo scene = 2;
+}
+
+message Maze {
+  uint32 id = 1;
+  MazeFloor floor = 2;
+  uint32 map_entry_id = 3;
+}
+
+message MazeAvatar {
+  uint32 base_avatar_id = 1;
+  uint32 left_hp = 2;
+  uint32 sp = 3;
+}
+
+message MazeMission {
+  uint32 sub_mission_id = 1;
+  MissionStatus status = 2;
+}
+
+message GetMazeCsReq {}
+
+message GetMazeScRsp {
+  uint32 retcode = 1;
+  repeated Maze maze_list = 2;
+  uint32 cur_series_id = 3;
+  repeated uint32 finished_plane_list = 4;
+  repeated uint32 wait_plane_list = 5;
+  repeated uint32 taken_reward_list = 6;
+  repeated MazeAvatar avatar_list = 7;
+  repeated uint32 chosen_ability_list = 8;
+  repeated uint32 candidate_ability_list = 9;
+  repeated MazeMission maze_mission_list = 10;
+}
+
+message ChooseMazeSeriesCsReq { uint32 series_id = 1; }
+
+message ChooseMazeSeriesScRsp {
+  uint32 retcode = 1;
+  uint32 series_id = 2;
+}
+
+message ChooseMazeAbilityCsReq { uint32 ability_id = 1; }
+
+message ChooseMazeAbilityScRsp {
+  uint32 retcode = 1;
+  repeated uint32 ability_list = 2;
+}
+
+message EnterMazeCsReq {
+  uint32 entry_id = 1;
+  uint32 teleport_id = 2;
+}
+
+message EnterMazeScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+}
+
+message MazeBuffScNotify {
+  uint32 buff_id = 1;
+  MazeBuffOp op = 2;
+}
+
+message CastMazeSkillCsReq { uint32 skill_id = 1; }
+
+message CastMazeSkillScRsp { uint32 retcode = 1; }
+
+message MazePlaneEventScNotify { ItemList item_data = 1; }
+
+message EnterMazeByServerScNotify {
+  Maze maze = 1;
+  EnterMazeReason reason = 2;
+}
+
+message MazePropState {
+  uint32 group_id = 1;
+  uint32 config_id = 2;
+  uint32 state = 3;
+}
+
+message MazeGroup {
+  uint32 group_id = 1;
+  uint32 modify_time = 2;
+}
+
+message GetMazeMapInfoCsReq { uint32 entry_id = 1; }
+
+message GetMazeMapInfoScRsp {
+  uint32 retcode = 1;
+  uint32 entry_id = 2;
+  repeated uint32 lighten_section_list = 3;
+  repeated MazePropState maze_prop_list = 4;
+  repeated MazeGroup maze_group_list = 5;
+  uint32 opend_chest_num = 6;
+  repeated uint32 unlock_teleport_list = 7;
+}
+
+message GetMazeTimeOfDayCsReq {}
+
+message GetMazeTimeOfDayScRsp {
+  uint32 retcode = 1;
+  map<uint32, uint32> maze_time_of_day_map = 2;
+}
+
+message SetMazeTimeOfDayCsReq {
+  uint32 plane_id = 1;
+  uint32 time_of_day_type = 2;
+}
+
+message SetMazeTimeOfDayScRsp {
+  uint32 retcode = 1;
+  uint32 plane_id = 2;
+  uint32 time_of_day_type = 3;
+}
+
+message DelMazeTimeOfDayCsReq { uint32 plane_id = 1; }
+
+message DelMazeTimeOfDayScRsp {
+  uint32 retcode = 1;
+  uint32 plane_id = 2;
+}
+
+message ReturnStartAnchorCsReq { uint32 entry_id = 1; }
+
+message ReturnStartAnchorScRsp { uint32 retcode = 1; }
+
+enum CmdMazeType {
+  CmdMazeTypeNode = 0;
+  CmdGetMazeCsReq = 1001;
+  CmdGetMazeScRsp = 1002;
+  CmdChooseMazeSeriesCsReq = 1003;
+  CmdChooseMazeSeriesScRsp = 1004;
+  CmdChooseMazeAbilityCsReq = 1005;
+  CmdChooseMazeAbilityScRsp = 1006;
+  CmdEnterMazeCsReq = 1007;
+  CmdEnterMazeScRsp = 1008;
+  CmdMazeBuffScNotify = 1011;
+  CmdCastMazeSkillCsReq = 1012;
+  CmdCastMazeSkillScRsp = 1013;
+  CmdMazePlaneEventScNotify = 1014;
+  CmdEnterMazeByServerScNotify = 1015;
+  CmdGetMazeMapInfoCsReq = 1016;
+  CmdGetMazeMapInfoScRsp = 1017;
+  CmdGetMazeTimeOfDayCsReq = 1018;
+  CmdGetMazeTimeOfDayScRsp = 1019;
+  CmdSetMazeTimeOfDayCsReq = 1020;
+  CmdSetMazeTimeOfDayScRsp = 1021;
+  CmdDelMazeTimeOfDayCsReq = 1022;
+  CmdDelMazeTimeOfDayScRsp = 1023;
+  CmdReturnStartAnchorCsReq = 1024;
+  CmdReturnStartAnchorScRsp = 1025;
+}
+
+enum MazeBuffOp {
+  MAZE_BUFF_OP_NONE = 0;
+  MAZE_BUFF_OP_ADD = 1;
+  MAZE_BUFF_OP_DEL = 2;
+}
+
+enum EnterMazeReason {
+  REASON_NONE = 0;
+  REASON_CHALLENGE_TIMEOUT = 1;
+  REASON_ROGUE_TIMEOUT = 2;
+}
+
+
+
+message GetNpcMessageGroupCsReq { repeated uint32 contact_id_list = 1; }
+
+message MessageItem {
+  uint32 item_id = 1;
+  uint32 text_id = 2;
+}
+
+message MessageSection {
+  uint32 id = 1;
+  uint32 message_item_id = 2;
+  MessageSectionStatus status = 3;
+  repeated MessageItem item_list = 4;
+}
+
+message MessageGroup {
+  uint32 id = 1;
+  uint32 message_section_id = 2;
+  MessageGroupStatus status = 3;
+  uint32 refresh_time = 4;
+  repeated MessageSection message_section_list = 5;
+}
+
+message GetNpcMessageGroupScRsp {
+  uint32 retcode = 1;
+  repeated MessageGroup message_group_list = 2;
+}
+
+message GetNpcStatusCsReq {}
+
+message NpcStatus {
+  uint32 npc_id = 1;
+  bool is_finish = 2;
+}
+
+message GroupStatus {
+  uint32 group_id = 1;
+  MessageGroupStatus group_status = 2;
+  uint32 refresh_time = 3;
+}
+
+message SectionStatus {
+  uint32 section_id = 1;
+  MessageSectionStatus section_status = 2;
+}
+
+message GetNpcStatusScRsp {
+  uint32 retcode = 1;
+  repeated NpcStatus message_status_list = 2;
+}
+
+message FinishItemIdCsReq {
+  uint32 item_id = 1;
+  uint32 text_id = 2;
+}
+
+message FinishItemIdScRsp {
+  uint32 retcode = 1;
+  uint32 item_id = 2;
+  uint32 text_id = 3;
+}
+
+message FinishSectionIdCsReq { uint32 section_id = 1; }
+
+message FinishSectionIdScRsp {
+  uint32 retcode = 1;
+  uint32 section_id = 2;
+}
+
+enum CmdMessageType {
+  CmdMessageTypeNone = 0;
+  CmdGetNpcMessageGroupCsReq = 2701;
+  CmdGetNpcMessageGroupScRsp = 2702;
+  CmdGetNpcStatusCsReq = 2703;
+  CmdGetNpcStatusScRsp = 2704;
+  CmdFinishItemIdCsReq = 2705;
+  CmdFinishItemIdScRsp = 2706;
+  CmdFinishSectionIdCsReq = 2707;
+  CmdFinishSectionIdScRsp = 2708;
+}
+
+
+
+message GetMissionDataCsReq {}
+
+message Mission {
+  uint32 id = 1;
+  MissionStatus status = 2;
+  uint32 progress = 3;
+}
+
+message GetMissionDataScRsp {
+  uint32 retcode = 1;
+  repeated Mission mission_list = 2;
+}
+
+message FinishTalkMissionCsReq { string talk_str = 1; }
+
+message FinishTalkMissionScRsp {
+  uint32 retcode = 1;
+  string talk_str = 2;
+}
+
+message MissionRewardScNotify {
+  uint32 main_mission_id = 1;
+  ItemList reward = 2;
+}
+
+message SubMissionRewardScNotify {
+  uint32 sub_mission_id = 1;
+  ItemList reward = 2;
+}
+
+message SyncTaskCsReq { string key = 1; }
+
+message SyncTaskScRsp {
+  uint32 retcode = 1;
+  string key = 2;
+}
+
+message DailyTask {
+  uint32 main_mission_id = 1;
+  bool is_finished = 2;
+}
+
+message DailyTaskDataScNotify {
+  bool is_taken_extra_reward = 1;
+  uint32 finished_num = 2;
+  repeated DailyTask daily_task_list = 3;
+}
+
+message TakeDailyTaskExtraRewardCsReq {}
+
+message TakeDailyTaskExtraRewardScRsp {
+  uint32 retcode = 1;
+  ItemList reward = 2;
+}
+
+message DailyTaskRewardScNotify {
+  uint32 count = 1;
+  ItemList reward = 2;
+}
+
+message MissionGroupWarnScNotify { repeated uint32 group_id_list = 1; }
+
+message FinishCosumeItemMissionCsReq { uint32 sub_mission_id = 1; }
+
+message FinishCosumeItemMissionScRsp {
+  uint32 retcode = 1;
+  uint32 sub_mission_id = 2;
+}
+
+message GetMissionEventDataCsReq {}
+
+message GetMissionEventDataScRsp {
+  uint32 retcode = 1;
+  repeated Mission mission_event_list = 2;
+  uint32 challenge_event_id = 3;
+}
+
+message MissionEventRewardScNotify {
+  uint32 mission_event_id = 1;
+  ItemList reward = 2;
+}
+
+message AcceptMissionEventCsReq { uint32 mission_event_id = 1; }
+
+message AcceptMissionEventScRsp {
+  uint32 retcode = 1;
+  Mission mission_event = 2;
+}
+
+message GetMissionStatusCsReq {
+  repeated uint32 main_mission_id_list = 1;
+  repeated uint32 sub_mission_id_list = 2;
+  repeated uint32 mission_event_id_list = 3;
+}
+
+message GetMissionStatusScRsp {
+  uint32 retcode = 1;
+  repeated uint32 finished_main_mission_id_list = 2;
+  repeated uint32 unfinished_main_mission_id_list = 3;
+  repeated Mission sub_mission_status_list = 4;
+  repeated Mission mission_event_status_list = 5;
+}
+
+message InterruptMissionEventCsReq { uint32 mission_event_id = 1; }
+
+message InterruptMissionEventScRsp {
+  uint32 retcode = 1;
+  uint32 mission_event_id = 2;
+}
+
+message SetMissionEventProgressCsReq {
+  uint32 mission_event_id = 1;
+  uint32 progress = 2;
+}
+
+message SetMissionEventProgressScRsp { uint32 retcode = 1; }
+
+enum CmdMissionType {
+  CmdMissionTypeNone = 0;
+  CmdGetMissionDataCsReq = 1201;
+  CmdGetMissionDataScRsp = 1202;
+  CmdFinishTalkMissionCsReq = 1203;
+  CmdFinishTalkMissionScRsp = 1204;
+  CmdMissionRewardScNotify = 1205;
+  CmdSyncTaskCsReq = 1206;
+  CmdSyncTaskScRsp = 1207;
+  CmdDailyTaskDataScNotify = 1208;
+  CmdTakeDailyTaskExtraRewardCsReq = 1209;
+  CmdTakeDailyTaskExtraRewardScRsp = 1210;
+  CmdDailyTaskRewardScNotify = 1211;
+  CmdMissionGroupWarnScNotify = 1212;
+  CmdFinishCosumeItemMissionCsReq = 1213;
+  CmdFinishCosumeItemMissionScRsp = 1214;
+  CmdGetMissionEventDataCsReq = 1215;
+  CmdGetMissionEventDataScRsp = 1216;
+  CmdMissionEventRewardScNotify = 1217;
+  CmdAcceptMissionEventCsReq = 1218;
+  CmdAcceptMissionEventScRsp = 1219;
+  CmdGetMissionStatusCsReq = 1220;
+  CmdGetMissionStatusScRsp = 1221;
+  CmdInterruptMissionEventCsReq = 1222;
+  CmdInterruptMissionEventScRsp = 1223;
+  CmdSetMissionEventProgressCsReq = 1224;
+  CmdSetMissionEventProgressScRsp = 1225;
+  CmdSubMissionRewardScNotify = 1226;
+}
+
+
+
+
+
+message PlayerLoginCsReq {
+  PlatformType platform = 1;
+  string cps = 2;
+  string device_uuid = 3;
+  string device_info = 4;
+  string system_info = 5;
+  string client_version = 6;
+  LanguageType language = 7;
+  uint32 last_server_packet_id = 8;
+  string check_sum_1 = 9;
+  string check_sum_2 = 10;
+  string signature = 11;
+  string resolution = 12;
+  uint64 login_random = 13;
+  string system_language = 14;
+  uint32 res_version = 15;
+  string client_time_zone = 16;
+}
+
+message PlayerLoginScRsp {
+  uint32 retcode = 1;
+  bool is_new_player = 2;
+  PlayerBasicInfo basic_info = 3;
+  uint64 server_timestamp_ms = 4;
+  uint32 stamina = 5;
+  bool is_relay = 6;
+  uint64 login_random = 7;
+  int32 cur_timezone = 8;
+  string bs_bin_version = 10;
+}
+
+message PlayerLogoutCsReq {}
+
+message PlayerGetTokenCsReq {
+  uint32 channel_id = 1;
+  string account_uid = 2;
+  string token = 3;
+  uint32 uid = 4;
+  string device = 5;
+}
+
+message PlayerGetTokenScRsp {
+  uint32 retcode = 1;
+  uint32 uid = 2;
+  BlackInfo black_info = 3;
+  string msg = 4;
+  uint64 secret_key_seed = 5;
+}
+
+message PlayerKeepAliveNotify { ClientUploadData data = 1; }
+
+message GmTalkScNotify { string msg = 1; }
+
+message PlayerKickOutScNotify {
+  KickType kick_type = 1;
+  enum KickType {
+    KICK_SQUEEZED = 0;
+    KICK_BLACK = 1;
+    KICK_CHANGE_PWD = 2;
+  }
+
+  BlackInfo black_info = 2;
+}
+
+message GmTalkCsReq { string msg = 1; }
+
+message GmTalkScRsp {
+  uint32 retcode = 1;
+  string retmsg = 2;
+}
+
+message GetBasicInfoCsReq {}
+
+message GetBasicInfoScRsp {
+  uint32 retcode = 1;
+  uint32 next_recover_time = 2;
+  uint32 exchange_times = 3;
+  uint32 week_cocoon_finished_count = 4;
+  uint32 cur_day = 5;
+}
+
+message ExchangeStaminaCsReq {}
+
+message ExchangeStaminaScRsp {
+  uint32 retcode = 1;
+  uint32 stamina_add = 2;
+  repeated ItemCost item_cost_list = 3;
+  uint32 last_recover_time = 4;
+  uint32 exchange_times = 5;
+}
+
+message GetAuthkeyCsReq {
+  string auth_appid = 1;
+  uint32 sign_type = 2;
+  uint32 authkey_ver = 3;
+}
+
+message GetAuthkeyScRsp {
+  uint32 retcode = 1;
+  string authkey = 2;
+  string auth_appid = 3;
+  uint32 sign_type = 4;
+  uint32 authkey_ver = 5;
+}
+
+message RegionStopScNotify {
+  uint32 stop_begin_time = 1;
+  uint32 stop_end_time = 2;
+}
+
+message AntiAddictScNotify {
+  uint32 msg_type = 1;
+  string msg = 2;
+  string level = 3;
+}
+
+message SetNicknameCsReq {
+  string nickname = 1;
+  bool is_modify = 2;
+}
+
+message SetNicknameScRsp {
+  uint32 retcode = 1;
+  bool is_modify = 2;
+}
+
+message GetLevelRewardTakenListCsReq {}
+
+message GetLevelRewardTakenListScRsp {
+  uint32 retcode = 1;
+  repeated uint32 taken_level_list = 2;
+}
+
+message GetLevelRewardCsReq { uint32 level = 1; }
+
+message GetLevelRewardScRsp {
+  uint32 retcode = 1;
+  ItemList reward = 2;
+}
+
+message SyncTimeCsReq { uint64 client_time_ms = 1; }
+
+message SyncTimeScRsp {
+  uint32 retcode = 1;
+  uint64 client_time_ms = 2;
+  uint64 server_time_ms = 3;
+  ClientDownloadData download_data = 4;
+}
+
+message SetLanguageCsReq { LanguageType language = 1; }
+
+message SetLanguageScRsp {
+  uint32 retcode = 1;
+  LanguageType language = 2;
+}
+
+message AnnounceData {
+  uint32 config_id = 1;
+  uint32 begin_time = 2;
+  uint32 end_time = 3;
+  string center_system_text = 4;
+  string count_down_text = 5;
+  string dungeon_confirm_text = 6;
+  uint32 center_system_frequency = 7;
+  uint32 count_down_frequency = 8;
+  bool is_center_system_last_5_every_minutes = 9;
+}
+
+message ServerAnnounceNotify { repeated AnnounceData announce_data_list = 1; }
+
+message Gateserver {
+  uint32 retcode = 1;
+  string msg = 2;
+  string region_name = 3;
+  string ip = 4;
+  uint32 port = 5;
+  uint32 stop_begin_time = 6;
+  uint32 stop_end_time = 7;
+  bool data_use_asset_boundle = 8;
+  bool res_use_asset_boundle = 9;
+  string asset_bundle_url = 10;
+  string ex_resource_url = 11;
+  string lua_url = 12;
+  uint32 asb_relogin = 13;
+  string asb_memo = 14;
+  uint32 design_data_relogin = 15;
+  string design_data_memo = 16;
+  string client_secret_key = 17;
+  string record_game_object_user_data = 18;
+  bool use_tcp = 19;
+  string custom_service_url = 20;
+  string operation_feedback_url = 21;
+  string privacy_in_game_url = 22;
+  bool client_record_replay = 23;
+  string server_description = 24;
+}
+
+message SetHeroBasicTypeCsReq { HeroBasicType basic_type = 1; }
+
+message SetHeroBasicTypeScRsp {
+  uint32 retcode = 1;
+  HeroBasicType basic_type = 2;
+}
+
+message GetHeroBasicTypeInfoCsReq {}
+
+message HeroBasicTypeInfo {
+  HeroBasicType basic_type = 1;
+  uint32 rank = 2;
+  repeated AvatarSkillTree skill_tree_list = 3;
+}
+
+message GetHeroBasicTypeInfoScRsp {
+  uint32 retcode = 1;
+  Gender gender = 2;
+  HeroBasicType cur_basic_type = 3;
+  repeated HeroBasicTypeInfo basic_type_info_list = 4;
+  repeated HeroPath hero_path_list = 5;
+  bool is_gender_modified = 6;
+  bool is_player_info_modified = 7;
+}
+
+message GetHeroPathCsReq {}
+
+message GetHeroPathScRsp {
+  uint32 retcode = 1;
+  repeated HeroPath hero_path_list = 2;
+}
+
+message HeroPathChangedNotify { HeroPath hero_path = 1; }
+
+message SetGenderCsReq { Gender gender = 1; }
+
+message SetGenderScRsp {
+  uint32 retcode = 1;
+  HeroBasicType cur_basic_type = 2;
+}
+
+message SetPlayerInfoCsReq {
+  string nickname = 1;
+  bool is_modify = 2;
+  Gender gender = 3;
+}
+
+message SetPlayerInfoScRsp {
+  uint32 retcode = 1;
+  HeroBasicType cur_basic_type = 2;
+  bool is_modify = 3;
+}
+
+message HeroBasicTypeChangedNotify { HeroBasicType cur_basic_type = 1; }
+
+message QueryProductInfoCsReq {}
+
+message Product {
+  string product_id = 1;
+  string price_tier = 2;
+}
+
+message QueryProductInfoScRsp {
+  uint32 retcode = 1;
+  repeated Product product_list = 2;
+}
+
+message ClientDownloadDataScNotify { ClientDownloadData download_data = 1; }
+
+message UpdateFeatureSwitchScNotify {
+  repeated FeatureSwitchInfo switch_info_list = 1;
+}
+
+message DailyRefreshNotify { uint32 cur_day = 1; }
+
+enum CmdPlayerType {
+  CmdPlayerTypeNone = 0;
+  CmdPlayerLoginCsReq = 1;
+  CmdPlayerLoginScRsp = 2;
+  CmdPlayerLogoutCsReq = 3;
+  CmdPlayerLogoutScRsp = 4;
+  CmdPlayerGetTokenCsReq = 5;
+  CmdPlayerGetTokenScRsp = 6;
+  CmdPlayerKeepAliveNotify = 7;
+  CmdGmTalkScNotify = 8;
+  CmdPlayerKickOutScNotify = 9;
+  CmdGmTalkCsReq = 10;
+  CmdGmTalkScRsp = 11;
+  CmdExchangeStaminaCsReq = 14;
+  CmdExchangeStaminaScRsp = 15;
+  CmdGetAuthkeyCsReq = 16;
+  CmdGetAuthkeyScRsp = 17;
+  CmdRegionStopScNotify = 18;
+  CmdAntiAddictScNotify = 19;
+  CmdSetNicknameCsReq = 20;
+  CmdSetNicknameScRsp = 21;
+  CmdGetLevelRewardTakenListCsReq = 22;
+  CmdGetLevelRewardTakenListScRsp = 23;
+  CmdGetLevelRewardCsReq = 24;
+  CmdGetLevelRewardScRsp = 25;
+  CmdSyncTimeCsReq = 26;
+  CmdSyncTimeScRsp = 27;
+  CmdSetLanguageCsReq = 28;
+  CmdSetLanguageScRsp = 29;
+  CmdServerAnnounceNotify = 30;
+  CmdSetHeroBasicTypeCsReq = 31;
+  CmdSetHeroBasicTypeScRsp = 32;
+  CmdGetHeroBasicTypeInfoCsReq = 33;
+  CmdGetHeroBasicTypeInfoScRsp = 34;
+  CmdGetHeroPathCsReq = 35;
+  CmdGetHeroPathScRsp = 36;
+  CmdHeroPathChangedNotify = 37;
+  CmdSetGenderCsReq = 38;
+  CmdSetGenderScRsp = 39;
+  CmdSetPlayerInfoCsReq = 40;
+  CmdSetPlayerInfoScRsp = 41;
+  CmdHeroBasicTypeChangedNotify = 42;
+  CmdQueryProductInfoCsReq = 43;
+  CmdQueryProductInfoScRsp = 44;
+  CmdClientDownloadDataScNotify = 45;
+  CmdUpdateFeatureSwitchScNotify = 46;
+  CmdGetBasicInfoCsReq = 47;
+  CmdGetBasicInfoScRsp = 48;
+  CmdDailyRefreshNotify = 49;
+}
+
+enum AuthkeySignType {
+  AUTHKEY_SIGN_TYPE_NONE = 0;
+  AUTHKEY_SIGN_TYPE_DEFAULT = 1;
+  AUTHKEY_SIGN_TYPE_RSA = 2;
+}
+
+message FinishPlotCsReq { uint32 plot_id = 1; }
+
+message FinishPlotScRsp {
+  uint32 retcode = 1;
+  uint32 plot_id = 2;
+}
+
+enum CmdPlotType {
+  CmdPlotTypeNone = 0;
+  CmdFinishPlotCsReq = 1101;
+  CmdFinishPlotScRsp = 1102;
+}
+
+
+
+message PrestigeInfo {
+  uint32 prestige_id = 1;
+  uint32 level = 2;
+  uint32 exp = 3;
+  repeated uint32 taken_level_list = 4;
+}
+
+message GetPrestigeInfoCsReq { uint32 prestige_id = 1; }
+
+message GetPrestigeInfoScRsp {
+  uint32 retcode = 1;
+  PrestigeInfo prestige_info = 2;
+}
+
+message PrestigeInfoChangeNotify { PrestigeInfo prestige_info = 1; }
+
+message TakePrestigeLevelRewardCsReq {
+  uint32 prestige_id = 1;
+  uint32 level = 2;
+}
+
+message TakePrestigeLevelRewardScRsp {
+  uint32 retcode = 1;
+  uint32 prestige_id = 2;
+  ItemList reward = 3;
+}
+
+enum CmdPrestigeType {
+  CmdPrestigeTypeNone = 0;
+  CmdGetPrestigeInfoCsReq = 2001;
+  CmdGetPrestigeInfoScRsp = 2002;
+  CmdPrestigeInfoChangeNotify = 2003;
+  CmdTakePrestigeLevelRewardCsReq = 2004;
+  CmdTakePrestigeLevelRewardScRsp = 2005;
+}
+
+
+
+message GetQuestDataCsReq {}
+
+message Quest {
+  uint32 id = 1;
+  QuestStatus status = 2;
+  uint32 progress = 3;
+  uint32 finish_time = 4;
+}
+
+message GetQuestDataScRsp {
+  uint32 retcode = 1;
+  repeated Quest quest_list = 2;
+  uint32 total_achievement_exp = 3;
+  repeated uint32 taken_achievement_level_list = 4;
+}
+
+message TakeQuestRewardCsReq { repeated uint32 quest_id_list = 1; }
+
+message TakeQuestRewardScRsp {
+  uint32 retcode = 1;
+  ItemList reward = 2;
+  repeated uint32 succ_quest_id_list = 3;
+}
+
+message TakeAchievementLevelRewardCsReq {
+  repeated uint32 achievement_level_list = 1;
+}
+
+message TakeAchievementLevelRewardScRsp {
+  uint32 retcode = 1;
+  ItemList reward = 2;
+  repeated uint32 succ_achievement_level_list = 3;
+}
+
+enum CmdQuestType {
+  CmdQuestTypeNone = 0;
+  CmdGetQuestDataCsReq = 901;
+  CmdGetQuestDataScRsp = 902;
+  CmdTakeQuestRewardCsReq = 903;
+  CmdTakeQuestRewardScRsp = 904;
+  CmdTakeAchievementLevelRewardCsReq = 905;
+  CmdTakeAchievementLevelRewardScRsp = 906;
+}
+
+enum QuestStatus {
+  QUEST_NONE = 0;
+  QUEST_DOING = 1;
+  QUEST_FINISH = 2;
+  QUEST_CLOSE = 3;
+  QUEST_DELETE = 4;
+}
+
+
+
+message StartRaidCsReq {
+  uint32 prop_entity_id = 1;
+  uint32 raid_id = 2;
+  uint32 world_level = 3;
+  repeated uint32 avatar_list = 4;
+}
+
+message StartRaidScRsp { uint32 retcode = 1; }
+
+message LeaveRaidCsReq { uint32 raid_id = 1; }
+
+message LeaveRaidScRsp { uint32 retcode = 1; }
+
+message RaidInfoNotify {
+  uint32 raid_id = 1;
+  uint32 world_level = 2;
+  RaidStatus status = 3;
+  ItemList item_list = 4;
+}
+
+message ChallengeRaid {
+  uint32 raid_id = 1;
+  uint32 max_score = 2;
+}
+
+message GetChallengeRaidInfoCsReq {}
+
+message GetChallengeRaidInfoScRsp {
+  uint32 retcode = 1;
+  repeated ChallengeRaid challenge_raid_list = 2;
+  repeated uint32 taken_reward_id_list = 3;
+}
+
+message TakeChallengeRaidRewardCsReq { uint32 reward_id = 1; }
+
+message TakeChallengeRaidRewardScRsp {
+  uint32 retcode = 1;
+  uint32 reward_id = 2;
+  ItemList reward = 3;
+}
+
+message ChallengeRaidNotify { ChallengeRaid challenge_raid = 1; }
+
+enum CmdRaidType {
+  CmdRaidTypeNone = 0;
+  CmdStartRaidCsReq = 2201;
+  CmdStartRaidScRsp = 2202;
+  CmdLeaveRaidCsReq = 2203;
+  CmdLeaveRaidScRsp = 2204;
+  CmdRaidInfoNotify = 2205;
+  CmdGetChallengeRaidInfoCsReq = 2206;
+  CmdGetChallengeRaidInfoScRsp = 2207;
+  CmdTakeChallengeRaidRewardCsReq = 2208;
+  CmdTakeChallengeRaidRewardScRsp = 2209;
+  CmdChallengeRaidNotify = 2210;
+}
+
+enum RaidStatus {
+  RAID_STATUS_NONE = 0;
+  RAID_STATUS_DOING = 1;
+  RAID_STATUS_FINISH = 2;
+  RAID_STATUS_FAILED = 3;
+}
+
+
+
+
+message RogueBuff {
+  uint32 buff_id = 1;
+  uint32 level = 2;
+}
+
+message RogueBuffList { repeated RogueBuff buff_list = 1; }
+
+message RogueRoom {
+  uint32 room_id = 1;
+  RogueRoomStatus status = 2;
+  uint32 site_id = 3;
+}
+
+message RogueLevel {
+  uint32 level_id = 1;
+  uint32 map_id = 2;
+  repeated RogueRoom room_list = 3;
+  uint32 cur_room_id = 4;
+}
+
+message RogueBless {
+  uint32 bless_id = 1;
+  uint32 level = 2;
+}
+
+message RogueBlessInfo {
+  repeated RogueBless bless_list = 1;
+  uint32 active_bless_id = 2;
+  RogueBless bless = 3;
+  uint32 monster_kill_count = 4;
+}
+
+message RogueBuffSelectInfo {
+  uint32 roll_buff_count = 1;
+  uint32 rogue_coin = 2;
+  uint32 left_select_count = 3;
+  repeated RogueBuff maze_buff_list = 4;
+  uint32 roll_buff_max_count = 5;
+  ItemCostData roll_buff_cost_data = 6;
+}
+
+message RogueShopBuff {
+  RogueBuff buff_info = 1;
+  uint32 total_count = 2;
+  uint32 left_count = 3;
+}
+
+message RogueShopItem {
+  uint32 item_id = 1;
+  uint32 total_count = 2;
+  uint32 left_count = 3;
+  ItemCostData cost_data = 4;
+}
+
+message RogueShopInfo {
+  uint32 rogue_shop_id = 1;
+  repeated RogueShopBuff shop_buff_list = 2;
+  repeated RogueShopItem shop_item_list = 3;
+}
+
+message RogueAppraisalRecord {
+  uint32 group_id = 1;
+  uint32 config_id = 2;
+  uint32 appraisal_count = 3;
+}
+
+message RogueAppraisalInfo { repeated RogueAppraisalRecord appraisal_list = 1; }
+
+message RogueAppraisalItem {
+  uint32 item_id = 1;
+  float succ_ratio = 2;
+  float perfect_ratio = 3;
+}
+
+message RogueAppraisalItemInfo { repeated RogueAppraisalItem item_list = 1; }
+
+message RogueQuest {
+  uint32 rogue_quest_id = 1;
+  int32 world_level = 2;
+  uint32 progress = 3;
+  RogueQuestStatus status = 4;
+  uint32 begin_time = 5;
+  uint32 end_time = 6;
+  RogueQuestType type = 7;
+}
+
+message RogueInfo {
+  RogueStatus status = 1;
+  RogueLevel level_info = 2;
+  repeated RogueRoom room_list = 3;
+  uint32 rogue_coin = 4;
+  repeated uint32 base_avatar_id_list = 5;
+  uint32 rogue_stamina = 6;
+  uint32 revive_count = 7;
+  uint32 recover_stamina_count = 8;
+  bool is_record_saved = 9;
+  repeated uint32 explore_reward_list = 10;
+  uint32 season_id = 11;
+  uint32 begin_time = 12;
+  uint32 end_time = 13;
+  bool is_win = 14;
+  repeated RogueBuff maze_buff_list = 15;
+  repeated RogueBuff extra_buff_list = 16;
+  uint32 rogue_explore_exp = 17;
+  uint32 rogue_explore_lv = 18;
+  RogueBuffSelectInfo buff_select_info = 19;
+  bool is_pick_avatar = 20;
+  RogueBlessInfo bless_info = 21;
+  uint32 buff_score = 22;
+  RogueAppraisalInfo appraisal_info = 23;
+  int32 world_level = 24;
+  uint32 rogue_gacha_item_num_on_enter = 25;
+  repeated RogueQuest rogue_quest_list = 26;
+}
+
+message RogueRecord {
+  uint32 slot = 1;
+  repeated uint32 avatar_list = 2;
+  repeated RogueBuff maze_buff_list = 3;
+  string name = 4;
+  uint32 score = 5;
+}
+
+message RogueChallengeInfo {
+  bool is_in_challenge = 1;
+  repeated uint32 challenge_reward_list = 3;
+  uint32 histroy_max_score = 4;
+  repeated RogueRecord record_list = 5;
+  uint32 record_slot = 6;
+}
+
+message RogueFinishInfo {
+  bool is_win = 1;
+  ItemList reward = 2;
+  repeated uint32 explore_quest_list = 3;
+  bool can_save = 4;
+  uint32 buff_score = 5;
+  uint32 rogue_gacha_item_num = 6;
+}
+
+message RogueChallengeSpecialScore {
+  uint32 score_id = 1;
+  uint32 score = 2;
+}
+
+message RogueChallengeScoreInfo {
+  uint32 total_score = 1;
+  uint32 turn_score = 2;
+  uint32 damage_score = 3;
+  repeated RogueChallengeSpecialScore special_score_list = 4;
+}
+
+message RogueChallengeFinishInfo {
+  bool is_win = 1;
+  uint32 rounds = 2;
+  float damage = 3;
+  ItemList reward = 4;
+  repeated uint32 challenge_quest_list = 6;
+  RogueChallengeScoreInfo score_info = 10;
+}
+
+message RogueDialog {
+  uint32 rogue_dialog_id = 1;
+  RogueDialogStatus status = 2;
+}
+
+message RogueGachaGoods {
+  uint32 gacha_goods_id = 1;
+  uint32 status = 2;
+}
+
+message RogueGachaInfo {
+  uint32 gacha_pool_id = 1;
+  repeated RogueGachaGoods goods_list = 2;
+  repeated uint32 wish_id_list = 3;
+  uint32 cur_wish_id = 4;
+  uint32 gacha_count = 5;
+  uint32 total_count = 6;
+}
+
+message GetRogueInfoCsReq {}
+
+message GetRogueInfoScRsp {
+  uint32 retcode = 1;
+  RogueInfo rogue_info = 2;
+  RogueChallengeInfo rogue_challenge_info = 3;
+}
+
+message StartRogueCsReq { repeated uint32 base_avatar_id_list = 1; }
+
+message StartRogueScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  RogueInfo rogue_info = 3;
+}
+
+message EnterRogueCsReq {}
+
+message EnterRogueScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  RogueInfo rogue_info = 3;
+}
+
+message LeaveRogueCsReq {}
+
+message LeaveRogueScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+}
+
+message SyncRogueBuffSelectInfoScNotify {
+  RogueBuffSelectInfo buff_select_info = 1;
+}
+
+message SelectRogueBuffCsReq { uint32 maze_buff_id = 2; }
+
+message SelectRogueBuffScRsp {
+  uint32 retcode = 1;
+  uint32 god_plot_id = 2;
+  RogueBuffSelectInfo buff_select_info = 3;
+}
+
+message RollRogueBuffCsReq {}
+
+message RollRogueBuffScRsp {
+  uint32 retcode = 1;
+  RogueBuffSelectInfo buff_select_info = 2;
+}
+
+message EnterNextRogueRoomScNotify {
+  Maze maze = 1;
+  RogueRoom room = 2;
+  RogueAppraisalInfo appraisal_info = 3;
+}
+
+message SyncRogueFinishScNotify { RogueFinishInfo finish_info = 1; }
+
+message PickRogueAvatarCsReq {
+  uint32 base_avatar_id = 1;
+  uint32 prop_entity_id = 2;
+  repeated uint32 base_avatar_id_list = 3;
+}
+
+message PickRogueAvatarScRsp {
+  uint32 retcode = 1;
+  uint32 base_avatar_id = 2;
+  repeated uint32 base_avatar_id_list = 3;
+}
+
+message AddRogueBuffScNotify { RogueBuff maze_buff_info = 1; }
+
+message ReviveRogueAvatarCsReq { uint32 base_avatar_id = 1; }
+
+message ReviveRogueAvatarScRsp {
+  uint32 retcode = 1;
+  uint32 base_avatar_id = 2;
+  uint32 rogue_stamina = 3;
+  uint32 revive_count = 4;
+}
+
+message SaveRogueRecordCsReq {
+  bool save = 1;
+  uint32 slot = 2;
+  string name = 3;
+}
+
+message SaveRogueRecordScRsp {
+  uint32 retcode = 1;
+  RogueRecord record = 2;
+}
+
+message RecoverRogueStaminaCsReq { uint32 prop_entity_id = 1; }
+
+message RecoverRogueStaminaScRsp {
+  uint32 retcode = 1;
+  uint32 rogue_stamina = 2;
+  uint32 rogue_coin = 3;
+  uint32 recover_stamina_count = 4;
+}
+
+message StartRogueChallengeCsReq { uint32 record_slot = 1; }
+
+message StartRogueChallengeScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  RogueChallengeInfo rogue_challenge_info = 3;
+}
+
+message LeaveRogueChallengeCsReq {}
+
+message LeaveRogueChallengeScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  RogueChallengeInfo rogue_challenge_info = 3;
+}
+
+message SyncRogueChallengeFinishScNotify {
+  RogueChallengeFinishInfo finish_info = 1;
+}
+
+message QuitRogueCsReq {}
+
+message QuitRogueScRsp {
+  uint32 retcode = 1;
+  RogueFinishInfo finish_info = 2;
+}
+
+message AppraisalRogueStoneCsReq { uint32 stone_item_id = 1; }
+
+message AppraisalRogueStoneScRsp {
+  uint32 retcode = 1;
+  RogueStoneAppraisalResult result = 2;
+  ItemList reward = 3;
+  RogueBuff maze_buff_info = 4;
+  RogueAppraisalRecord appraisal_record = 5;
+  RogueAppraisalItemInfo item_info = 6;
+}
+
+message SyncRogueSeasonFinishScNotify { RogueFinishInfo finish_info = 2; }
+
+message SyncRogueInfoChangeScNotify {
+  uint32 recover_stamina_count = 1;
+  uint32 rogue_explore_lv = 2;
+}
+
+message AddRogueExtraBuffScNotify { RogueBuff extra_buff_info = 1; }
+
+message EnterRogueMapRoomCsReq { uint32 room_id = 1; }
+
+message EnterRogueMapRoomScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  uint32 cur_room_id = 3;
+}
+
+message EnterRogueNextLevelCsReq {}
+
+message EnterRogueNextLevelScRsp {
+  uint32 retcode = 1;
+  Maze maze = 2;
+  RogueLevel level_info = 3;
+  RogueAppraisalInfo appraisal_info = 4;
+}
+
+message SyncRogueMapRoomScNotify {
+  uint32 level_id = 1;
+  uint32 map_id = 2;
+  RogueRoom room_info = 3;
+}
+
+message SyncRoguePickAvatarScNotify {}
+
+message SetRogueBlessCsReq { uint32 bless_id = 1; }
+
+message SetRogueBlessScRsp {
+  uint32 retcode = 1;
+  uint32 bless_id = 2;
+}
+
+message SyncRogueBlessScNotify {
+  RogueBlessInfo bless_info = 1;
+  bool level_up_max = 2;
+}
+
+message GetRogueShopInfoCsReq {}
+
+message GetRogueShopInfoScRsp {
+  uint32 retcode = 1;
+  RogueShopInfo rogue_shop_info = 2;
+}
+
+message BuyRogueShopBuffCsReq {
+  uint32 buff_id = 1;
+  uint32 buy_count = 2;
+}
+
+message BuyRogueShopBuffScRsp {
+  uint32 retcode = 1;
+  RogueBuff buy_rogue_buff = 2;
+  uint32 buy_count = 3;
+  RogueShopBuff rogue_shop_buff = 4;
+}
+
+message BuyRogueShopItemCsReq {
+  uint32 item_id = 1;
+  uint32 buy_count = 2;
+}
+
+message BuyRogueShopItemScRsp {
+  uint32 retcode = 1;
+  uint32 item_id = 2;
+  uint32 buy_count = 3;
+  RogueShopItem rogue_shop_item = 4;
+  RogueShopInfo rogue_shop_info = 5;
+}
+
+message FinishRogueDialogueGroupCsReq { uint32 dialogue_group_id = 1; }
+
+message FinishRogueDialogueGroupScRsp { uint32 retcode = 1; }
+
+message UnlockRogueRoomCsReq { uint32 room_id = 1; }
+
+message UnlockRogueRoomScRsp { uint32 retcode = 1; }
+
+message GetRogueGachaInfoCsReq {}
+
+message GetRogueGachaInfoScRsp {
+  uint32 retcode = 1;
+  RogueGachaInfo rogue_gacha_info = 2;
+}
+
+message SetRogueGachaWishListCsReq { uint32 wish_list_id = 1; }
+
+message SetRogueGachaWishListScRsp {
+  uint32 retcode = 1;
+  RogueGachaInfo rogue_gacha_info = 2;
+}
+
+message DoRogueGachaCsReq { uint32 count = 1; }
+
+message DoRogueGachaScRsp {
+  uint32 retcode = 1;
+  ItemList item_list = 2;
+  RogueGachaInfo rogue_gacha_info = 3;
+}
+
+message SyncRogueGachaRefreshScNotify { RogueGachaInfo rogue_gacha_info = 1; }
+
+message GetRogueAppraisalItemInfoCsReq {}
+
+message GetRogueAppraisalItemInfoScRsp {
+  uint32 retcode = 1;
+  RogueAppraisalItemInfo item_info = 2;
+}
+
+message SyncRogueMiracleGetItemScNotify { ItemList item_data = 1; }
+
+message SyncRogueQuestScNotify { RogueQuest rogue_quest = 1; }
+
+message GetRogueQuestRewardCsReq {
+  uint32 rogue_quest_id = 1;
+  RogueQuestType type = 2;
+}
+
+message GetRogueQuestRewardScRsp {
+  uint32 retcode = 1;
+  ItemList reward = 2;
+  RogueQuest rogue_quest = 3;
+}
+
+enum CmdRogueType {
+  CmdRogueTypeNone = 0;
+  CmdGetRogueInfoCsReq = 1801;
+  CmdGetRogueInfoScRsp = 1802;
+  CmdStartRogueCsReq = 1803;
+  CmdStartRogueScRsp = 1804;
+  CmdEnterRogueCsReq = 1805;
+  CmdEnterRogueScRsp = 1806;
+  CmdLeaveRogueCsReq = 1807;
+  CmdLeaveRogueScRsp = 1808;
+  CmdSyncRogueBuffSelectInfoScNotify = 1809;
+  CmdSelectRogueBuffCsReq = 1810;
+  CmdSelectRogueBuffScRsp = 1811;
+  CmdRollRogueBuffCsReq = 1812;
+  CmdRollRogueBuffScRsp = 1813;
+  CmdEnterNextRogueRoomScNotify = 1814;
+  CmdSyncRogueFinishScNotify = 1815;
+  CmdPickRogueAvatarCsReq = 1816;
+  CmdPickRogueAvatarScRsp = 1817;
+  CmdAddRogueBuffScNotify = 1818;
+  CmdReviveRogueAvatarCsReq = 1819;
+  CmdReviveRogueAvatarScRsp = 1820;
+  CmdSaveRogueRecordCsReq = 1821;
+  CmdSaveRogueRecordScRsp = 1822;
+  CmdRecoverRogueStaminaCsReq = 1823;
+  CmdRecoverRogueStaminaScRsp = 1824;
+  CmdStartRogueChallengeCsReq = 1827;
+  CmdStartRogueChallengeScRsp = 1828;
+  CmdLeaveRogueChallengeCsReq = 1829;
+  CmdLeaveRogueChallengeScRsp = 1830;
+  CmdSyncRogueChallengeFinishScNotify = 1831;
+  CmdQuitRogueCsReq = 1832;
+  CmdQuitRogueScRsp = 1833;
+  CmdAppraisalRogueStoneCsReq = 1834;
+  CmdAppraisalRogueStoneScRsp = 1835;
+  CmdSyncRogueSeasonFinishScNotify = 1836;
+  CmdSyncRogueInfoChangeScNotify = 1837;
+  CmdAddRogueExtraBuffScNotify = 1838;
+  CmdEnterRogueMapRoomCsReq = 1839;
+  CmdEnterRogueMapRoomScRsp = 1840;
+  CmdEnterRogueNextLevelCsReq = 1841;
+  CmdEnterRogueNextLevelScRsp = 1842;
+  CmdSyncRogueMapRoomScNotify = 1843;
+  CmdSyncRoguePickAvatarScNotify = 1844;
+  CmdSetRogueBlessCsReq = 1845;
+  CmdSetRogueBlessScRsp = 1846;
+  CmdSyncRogueBlessScNotify = 1847;
+  CmdGetRogueShopInfoCsReq = 1848;
+  CmdGetRogueShopInfoScRsp = 1849;
+  CmdBuyRogueShopBuffCsReq = 1850;
+  CmdBuyRogueShopBuffScRsp = 1851;
+  CmdFinishRogueDialogueGroupCsReq = 1852;
+  CmdFinishRogueDialogueGroupScRsp = 1853;
+  CmdUnlockRogueRoomCsReq = 1856;
+  CmdUnlockRogueRoomScRsp = 1857;
+  CmdGetRogueGachaInfoCsReq = 1858;
+  CmdGetRogueGachaInfoScRsp = 1859;
+  CmdSetRogueGachaWishListCsReq = 1860;
+  CmdSetRogueGachaWishListScRsp = 1861;
+  CmdDoRogueGachaCsReq = 1862;
+  CmdDoRogueGachaScRsp = 1863;
+  CmdSyncRogueGachaRefreshScNotify = 1864;
+  CmdBuyRogueShopItemCsReq = 1865;
+  CmdBuyRogueShopItemScRsp = 1866;
+  CmdGetRogueAppraisalItemInfoCsReq = 1867;
+  CmdGetRogueAppraisalItemInfoScRsp = 1868;
+  CmdSyncRogueMiracleGetItemScNotify = 1869;
+  CmdSyncRogueQuestScNotify = 1870;
+  CmdGetRogueQuestRewardCsReq = 1871;
+  CmdGetRogueQuestRewardScRsp = 1872;
+}
+
+enum RogueStatus {
+  ROGUE_STATUS_NONE = 0;
+  ROGUE_STATUS_DOING = 1;
+  ROGUE_STATUS_PENDING = 2;
+  ROGUE_STATUS_FINISH = 3;
+}
+
+enum RogueRoomStatus {
+  ROGUE_ROOM_STATUS_NONE = 0;
+  ROGUE_ROOM_STATUS_LOCK = 1;
+  ROGUE_ROOM_STATUS_UNLOCK = 2;
+  ROGUE_ROOM_STATUS_PLAY = 3;
+  ROGUE_ROOM_STATUS_FINISH = 4;
+}
+
+enum RogueStoneAppraisalResult {
+  ROGUE_STONE_APPRAISAL_NONE = 0;
+  ROGUE_STONE_APPRAISAL_FAILED = 1;
+  ROGUE_STONE_APPRAISAL_NORMAL = 2;
+  ROGUE_STONE_APPRAISAL_PERFECT = 3;
+}
+
+enum RogueDialogStatus {
+  ROGUE_DIALOG_STATUS_NONE = 0;
+  ROGUE_DIALOG_STATUS_LOCK = 1;
+  ROGUE_DIALOG_STATUS_UNLOCK = 2;
+}
+
+enum RogueGachaGoodsStatus {
+  ROGUE_GACHA_GOODS_DEFAULT = 0;
+  ROGUE_GACHA_GOODS_UP = 1;
+  ROGUE_GACHA_GOODS_EMPTY = 2;
+}
+
+enum RogueQuestStatus {
+  ROGUE_QUEST_STATUS_NONE = 0;
+  ROGUE_QUEST_STATUS_DOING = 1;
+  ROGUE_QUEST_STATUS_REWARD = 2;
+  ROGUE_QUEST_STATUS_FINISH = 3;
+}
+
+enum RogueQuestType {
+  ROGUE_QUEST_TYPE_EXPLORE = 0;
+  ROGUE_QUEST_TYPE_CHALLENGE = 1;
+}
+
+
+
+
+message Vector {
+  sint32 x = 1;
+  sint32 y = 2;
+  sint32 z = 3;
+}
+
+message MotionInfo {
+  Vector pos = 1;
+  Vector rot = 2;
+}
+
+message SceneActorInfo {
+  uint32 uid = 1;
+  AvatarType avatar_type = 2;
+  uint32 base_avatar_id = 3;
+  uint32 map_layer = 4;
+}
+
+message SceneNpcMonsterInfo {
+  uint32 monster_id = 1;
+  bool is_gen_monster = 2;
+  uint32 event_id = 3;
+  bool is_set_world_level = 4;
+  uint32 world_level = 5;
+}
+
+message NpcRogueInfo {
+  uint32 dialogue_group_id = 1;
+  uint32 rogue_npc_id = 2;
+}
+
+message NpcExtraInfo {
+  oneof info { NpcRogueInfo rogue_info = 1; }
+}
+
+message SceneNpcInfo {
+  uint32 npc_id = 1;
+  NpcExtraInfo extra_info = 2;
+}
+
+message PropRogueInfo {
+  uint32 room_id = 1;
+  uint32 appraisal_count = 2;
+  uint32 appraisal_max_count = 3;
+  uint32 pick_avatar_max_count = 4;
+}
+
+message PropExtraInfo {
+  oneof info { PropRogueInfo rogue_info = 1; }
+}
+
+message ScenePropInfo {
+  uint32 prop_id = 1;
+  uint32 prop_state = 2;
+  uint64 create_time_ms = 3;
+  uint32 life_time_ms = 4;
+  PropExtraInfo extra_info = 5;
+}
+
+message SceneEntityInfo {
+  uint32 entity_id = 1;
+  MotionInfo motion = 2;
+  uint32 group_id = 3;
+  uint32 inst_id = 4;
+
+  oneof entity {
+    SceneActorInfo actor = 5;
+    SceneNpcMonsterInfo npc_monster = 6;
+    SceneNpcInfo npc = 7;
+    ScenePropInfo prop = 8;
+  }
+}
+
+message BuffInfo {
+  uint32 buff_id = 1;
+  uint32 level = 2;
+  uint64 add_time_ms = 3;
+  float life_time = 4;
+  uint32 count = 5;
+  uint32 base_avatar_id = 6;
+  map<string, float> dynamic_values = 7;
+}
+
+message EntityBuffInfo {
+  uint32 entity_id = 1;
+  repeated BuffInfo buff_list = 2;
+}
+
+message SceneInfo {
+  uint32 plane_id = 1;
+  uint32 floor_id = 2;
+  repeated SceneEntityInfo entity_list = 3;
+  repeated uint32 lighten_section_list = 4;
+  uint32 leader_entity_id = 5;
+  uint32 entry_id = 6;
+  repeated BuffInfo env_buff_list = 7;
+  repeated EntityBuffInfo entity_buff_list = 8;
+  uint32 game_mode_type = 9;
+}
+
+message EntityMotion {
+  uint32 entity_id = 1;
+  MotionInfo motion = 2;
+  uint32 map_layer = 3;
+}
+
+message SceneEntityMoveCsReq {
+  repeated EntityMotion entity_motion_list = 1;
+  uint32 entry_id = 2;
+}
+
+message SceneEntityMoveScRsp {
+  uint32 retcode = 1;
+  ClientDownloadData download_data = 2;
+}
+
+message SceneEntityMoveScNotify {
+  uint32 entity_id = 1;
+  MotionInfo motion = 2;
+}
+
+message InteractPropCsReq {
+  uint32 prop_entity_id = 1;
+  uint32 interact_id = 2;
+  MotionInfo motion = 3;
+}
+
+message InteractPropScRsp {
+  uint32 retcode = 1;
+  uint32 prop_entity_id = 2;
+  uint32 prop_state = 3;
+}
+
+message SceneCastSkillCsReq {
+  uint32 cast_entity_id = 1;
+  uint32 skill_index = 2;
+  uint32 ability_target_entity_id = 3;
+  repeated uint32 hit_target_entity_id_list = 4;
+  repeated uint32 assist_monster_entity_id_list = 5;
+  MotionInfo target_motion = 6;
+}
+
+message SceneCastSkillScRsp {
+  uint32 retcode = 1;
+  SceneBattleInfo battle_info = 2;
+}
+
+message SceneEnterStageCsReq { uint32 event_id = 1; }
+
+message SceneEnterStageScRsp {
+  uint32 retcode = 1;
+  SceneBattleInfo battle_info = 2;
+}
+
+message GetCurSceneInfoCsReq {}
+
+message GetCurSceneInfoScRsp {
+  uint32 retcode = 1;
+  SceneInfo scene = 2;
+}
+
+message SceneEntityUpdateScNotify { repeated SceneEntityInfo entity_list = 1; }
+
+message SceneEntityDisappearScNotify { repeated uint32 entity_id_list = 1; }
+
+message SpringTransferCsReq {
+  uint32 plane_id = 1;
+  uint32 floor_id = 2;
+  uint32 prop_entity_id = 3;
+}
+
+message SpringTransferScRsp { uint32 retcode = 1; }
+
+message UpdateBuffScNotify {
+  uint32 entity_id = 1;
+  BuffInfo buff = 2;
+}
+
+message DelBuffScNotify {
+  uint32 entity_id = 1;
+  uint32 buff_id = 2;
+}
+
+message SpringRefreshCsReq {
+  uint32 plane_id = 1;
+  uint32 floor_id = 2;
+  uint32 prop_entity_id = 3;
+}
+
+message SpringRefreshScRsp { uint32 retcode = 1; }
+
+message LastSpringRefreshTimeNotify { uint32 last_time = 1; }
+
+message ReturnLastTownCsReq {}
+
+message ReturnLastTownScRsp {
+  uint32 retcode = 1;
+  SceneInfo scene = 2;
+}
+
+message EnterSectionCsReq { uint32 section_id = 1; }
+
+message EnterSectionScRsp { uint32 retcode = 1; }
+
+message SetCurInteractEntityCsReq { uint32 entity_id = 1; }
+
+message SetCurInteractEntityScRsp { uint32 retcode = 1; }
+
+message RecoverAllLineupCsReq {}
+
+message RecoverAllLineupScRsp { uint32 retcode = 1; }
+
+message SavePointsInfoNotify {
+  uint32 valid_times = 1;
+  uint32 refresh_time = 2;
+}
+
+message StartCocoonStageCsReq {
+  uint32 prop_entity_id = 1;
+  uint32 cocoon_id = 2;
+  uint32 wave = 3;
+  uint32 world_level = 4;
+}
+
+message StartCocoonStageScRsp {
+  uint32 retcode = 1;
+  SceneBattleInfo battle_info = 2;
+  uint32 prop_entity_id = 3;
+  uint32 cocoon_id = 4;
+  uint32 wave = 5;
+}
+
+message EntityBindPropCsReq {
+  bool is_bind = 1;
+  MotionInfo motion = 2;
+}
+
+message EntityBindPropScRsp { uint32 retcode = 1; }
+
+message SetClientPausedCsReq { bool paused = 1; }
+
+message SetClientPausedScRsp {
+  uint32 retcode = 1;
+  bool paused = 2;
+}
+
+message UpdateBuffGroupStartScNotify {}
+
+message UpdateBuffGroupEndScNotify {}
+
+message ActivateFarmElementCsReq {
+  uint32 entity_id = 1;
+  uint32 world_level = 2;
+}
+
+message ActivateFarmElementScRsp {
+  uint32 retcode = 1;
+  uint32 entity_id = 2;
+  uint32 world_level = 3;
+}
+
+message AvatarPresetHp {
+  uint32 avatar_id = 1;
+  uint32 preset_hp = 2;
+}
+
+message SpringRecoverConfig {
+  repeated AvatarPresetHp avatar_preset_hp_list = 1;
+  bool auto_recover_hp = 2;
+  uint32 default_hp = 3;
+}
+
+message HealPoolInfo {
+  uint32 heal_pool = 1;
+  uint32 refresh_time = 2;
+}
+
+message GetSpringRecoverDataCsReq {}
+
+message GetSpringRecoverDataScRsp {
+  uint32 retcode = 1;
+  SpringRecoverConfig spring_recover_config = 2;
+  HealPoolInfo heal_pool_info = 3;
+}
+
+message SetSpringRecoverConfigCsReq {
+  SpringRecoverConfig spring_recover_config = 1;
+}
+
+message SetSpringRecoverConfigScRsp {
+  uint32 retcode = 1;
+  SpringRecoverConfig spring_recover_config = 2;
+}
+
+message SpringRecoverCsReq {
+  uint32 plane_id = 1;
+  uint32 floor_id = 2;
+  uint32 prop_entity_id = 3;
+}
+
+message SpringRecoverScRsp {
+  uint32 retcode = 1;
+  HealPoolInfo heal_pool_info = 2;
+}
+
+message HealPoolInfoNotify { HealPoolInfo heal_pool_info = 1; }
+
+message SpringRecoverSingleAvatarCsReq {
+  uint32 plane_id = 1;
+  uint32 floor_id = 2;
+  uint32 prop_entity_id = 3;
+  AvatarType avatar_type = 4;
+  uint32 id = 5;
+  bool recover_full = 6;
+}
+
+message SpringRecoverSingleAvatarScRsp {
+  uint32 retcode = 1;
+  AvatarType avatar_type = 2;
+  uint32 id = 3;
+  uint32 hp = 4;
+}
+
+enum CmdSceneType {
+  CmdSceneTypeNone = 0;
+  CmdSceneEntityMoveCsReq = 1401;
+  CmdSceneEntityMoveScRsp = 1402;
+  CmdInteractPropCsReq = 1403;
+  CmdInteractPropScRsp = 1404;
+  CmdSceneCastSkillCsReq = 1405;
+  CmdSceneCastSkillScRsp = 1406;
+  CmdGetCurSceneInfoCsReq = 1407;
+  CmdGetCurSceneInfoScRsp = 1408;
+  CmdSceneEntityUpdateScNotify = 1409;
+  CmdSceneEntityDisappearScNotify = 1410;
+  CmdSceneEntityMoveScNotify = 1411;
+  CmdSpringTransferCsReq = 1414;
+  CmdSpringTransferScRsp = 1415;
+  CmdUpdateBuffScNotify = 1416;
+  CmdDelBuffScNotify = 1417;
+  CmdSpringRefreshCsReq = 1418;
+  CmdSpringRefreshScRsp = 1419;
+  CmdLastSpringRefreshTimeNotify = 1420;
+  CmdReturnLastTownCsReq = 1421;
+  CmdReturnLastTownScRsp = 1422;
+  CmdSceneEnterStageCsReq = 1423;
+  CmdSceneEnterStageScRsp = 1424;
+  CmdEnterSectionCsReq = 1427;
+  CmdEnterSectionScRsp = 1428;
+  CmdSetCurInteractEntityCsReq = 1431;
+  CmdSetCurInteractEntityScRsp = 1432;
+  CmdRecoverAllLineupCsReq = 1433;
+  CmdRecoverAllLineupScRsp = 1434;
+  CmdSavePointsInfoNotify = 1435;
+  CmdStartCocoonStageCsReq = 1436;
+  CmdStartCocoonStageScRsp = 1437;
+  CmdEntityBindPropCsReq = 1438;
+  CmdEntityBindPropScRsp = 1439;
+  CmdSetClientPausedCsReq = 1440;
+  CmdSetClientPausedScRsp = 1441;
+  CmdUpdateBuffGroupStartScNotify = 1442;
+  CmdUpdateBuffGroupEndScNotify = 1443;
+  CmdActivateFarmElementCsReq = 1445;
+  CmdActivateFarmElementScRsp = 1446;
+  CmdGetSpringRecoverDataCsReq = 1447;
+  CmdGetSpringRecoverDataScRsp = 1448;
+  CmdSetSpringRecoverConfigCsReq = 1449;
+  CmdSetSpringRecoverConfigScRsp = 1450;
+  CmdSpringRecoverCsReq = 1451;
+  CmdSpringRecoverScRsp = 1452;
+  CmdHealPoolInfoNotify = 1453;
+  CmdSpringRecoverSingleAvatarCsReq = 1454;
+  CmdSpringRecoverSingleAvatarScRsp = 1455;
+}
+
+
+
+message Shop {
+  uint32 shop_id = 1;
+  uint32 begin_time = 2;
+  uint32 end_time = 3;
+  repeated Goods goods_list = 4;
+}
+
+message Goods {
+  uint32 goods_id = 1;
+  uint32 buy_times = 2;
+  uint32 begin_time = 3;
+  uint32 end_time = 4;
+}
+
+message GetShopListCsReq { uint32 shop_type = 1; }
+
+message GetShopListScRsp {
+  uint32 retcode = 1;
+  repeated Shop shop_list = 2;
+  uint32 shop_type = 3;
+}
+
+message BuyGoodsCsReq {
+  uint32 shop_id = 1;
+  uint32 goods_id = 2;
+  uint32 goods_num = 3;
+}
+
+message BuyGoodsScRsp {
+  uint32 retcode = 1;
+  uint32 shop_id = 2;
+  uint32 goods_id = 3;
+  uint32 goods_buy_times = 4;
+  ItemList return_item_list = 5;
+}
+
+enum CmdShopType {
+  CmdShopTypeNone = 0;
+  CmdGetShopListCsReq = 1501;
+  CmdGetShopListScRsp = 1502;
+  CmdBuyGoodsCsReq = 1503;
+  CmdBuyGoodsScRsp = 1504;
+}
+
+
+
+message Stage {
+  uint32 id = 1;
+  uint32 win_times = 2;
+  uint32 challenge_value = 3;
+}
+
+message GetStageDataCsReq { repeated uint32 stage_id_list = 1; }
+
+message GetStageDataScRsp {
+  uint32 retcode = 1;
+  repeated Stage stage_list = 2;
+  bool is_all = 3;
+}
+
+message StageBeginCsReq {
+  uint32 stage_id = 1;
+  uint32 lineup_index = 2;
+}
+
+message StageBeginScRsp {
+  uint32 retcode = 1;
+  uint32 logic_random_seed = 2;
+  uint32 stage_id = 3;
+  repeated BattleAvatar battle_avatar_list = 4;
+}
+
+enum CmdStageType {
+  CmdStageTypeNone = 0;
+  CmdGetStageDataCsReq = 201;
+  CmdGetStageDataScRsp = 202;
+  CmdStageBeginCsReq = 203;
+  CmdStageBeginScRsp = 204;
+}
+
+
+
+
+
+
+
+
+
+message BasicModuleSync {
+  uint32 stamina = 1;
+  uint32 week_cocoon_finished_count = 2;
+}
+
+message RogueModuleSync {
+  uint32 rogue_coin = 1;
+  uint32 rogue_stamina = 2;
+  uint32 rogue_explore_exp = 3;
+}
+
+message AvatarSync { repeated Avatar avatar_list = 1; }
+
+message MissionSync {
+  repeated Mission mission_list = 1;
+  repeated uint32 finished_main_mission_id_list = 2;
+  repeated uint32 del_mission_id_list = 3;
+  repeated uint32 del_main_mission_id_list = 4;
+}
+
+message MissionEventSync {
+  repeated Mission mission_event_list = 1;
+  repeated uint32 finished_mission_event_id_list = 2;
+  repeated uint32 del_mission_event_id_list = 3;
+}
+
+message PlayerSyncScNotify {
+  PlayerBasicInfo basic_info = 1;
+  AvatarSync avatar_sync = 2;
+  repeated Equipment equipment_list = 3;
+  repeated uint32 del_equipment_list = 4;
+  repeated Material material_list = 5;
+  repeated Quest quest_list = 6;
+  MissionSync mission_sync = 7;
+  BasicModuleSync basic_module_sync = 8;
+  repeated Relic relic_list = 9;
+  repeated uint32 del_relic_list = 10;
+  MissionEventSync mission_event_sync = 11;
+  repeated HeroBasicTypeInfo basic_type_info_list = 12;
+  repeated Material rogue_item_list = 13;
+  RogueModuleSync rogue_module_sync = 14;
+  repeated WaitDelResource wait_del_resource_list = 15;
+  uint32 total_achievement_exp = 16;
+  repeated uint32 new_item_hint_list = 17;
+  repeated GroupStatus group_status_list = 18;
+  repeated SectionStatus section_status_list = 19;
+}
+
+enum CmdPlayerSyncType {
+  CmdPlayerSyncNone = 0;
+  CmdPlayerSyncScNotify = 601;
+}
+
+
+
+
+message GetNpcTakenRewardCsReq { uint32 npc_id = 1; }
+
+message GetNpcTakenRewardScRsp {
+  uint32 retcode = 1;
+  uint32 npc_id = 2;
+  repeated uint32 talk_event_list = 3;
+}
+
+message TakeTalkRewardCsReq {
+  uint32 talk_event_id = 1;
+  Vector npc_location = 2;
+}
+
+message TakeTalkRewardScRsp {
+  uint32 retcode = 1;
+  uint32 talk_event_id = 2;
+  ItemList reward = 3;
+}
+
+message GetFirstTalkNpcCsReq { repeated uint32 series_id_list = 1; }
+
+message NpcMeetStatus {
+  uint32 series_id = 1;
+  bool is_meet = 2;
+}
+
+message GetFirstTalkNpcScRsp {
+  uint32 retcode = 1;
+  repeated NpcMeetStatus npc_meet_status_list = 2;
+}
+
+message FinishFirstTalkNpcCsReq { uint32 series_id = 1; }
+
+message FinishFirstTalkNpcScRsp {
+  uint32 retcode = 1;
+  uint32 series_id = 2;
+}
+
+enum CmdTalkEventType {
+  CmdTalkRewardTypeNone = 0;
+  CmdGetNpcTakenRewardCsReq = 2101;
+  CmdGetNpcTakenRewardScRsp = 2102;
+  CmdTakeTalkRewardCsReq = 2103;
+  CmdTakeTalkRewardScRsp = 2104;
+  CmdGetFirstTalkNpcCsReq = 2105;
+  CmdGetFirstTalkNpcScRsp = 2106;
+  CmdFinishFirstTalkNpcCsReq = 2107;
+  CmdFinishFirstTalkNpcScRsp = 2108;
+}
+
+
+
+message Tutorial {
+  uint32 id = 1;
+  TutorialStatus status = 2;
+}
+
+message TutorialGuide {
+  uint32 id = 1;
+  TutorialStatus status = 2;
+}
+
+message GetTutorialCsReq {}
+
+message GetTutorialScRsp {
+  uint32 retcode = 1;
+  repeated Tutorial tutorial_list = 2;
+}
+
+message GetTutorialGuideCsReq {}
+
+message GetTutorialGuideScRsp {
+  uint32 retcode = 1;
+  repeated TutorialGuide tutorial_guide_list = 2;
+}
+
+message UnlockTutorialCsReq { uint32 tutorial_id = 1; }
+
+message UnlockTutorialScRsp {
+  uint32 retcode = 1;
+  Tutorial tutorial = 2;
+}
+
+message UnlockTutorialGuideCsReq { uint32 group_id = 1; }
+
+message UnlockTutorialGuideScRsp {
+  uint32 retcode = 1;
+  TutorialGuide tutorial_guide = 2;
+}
+
+message FinishTutorialCsReq { uint32 tutorial_id = 1; }
+
+message FinishTutorialScRsp {
+  uint32 retcode = 1;
+  Tutorial tutorial = 2;
+}
+
+message FinishTutorialGuideCsReq { uint32 group_id = 1; }
+
+message FinishTutorialGuideScRsp {
+  uint32 retcode = 1;
+  TutorialGuide tutorial_guide = 2;
+  ItemList reward = 3;
+}
+
+enum CmdTutorialType {
+  CmdTutorialTypeNone = 0;
+  CmdGetTutorialCsReq = 1601;
+  CmdGetTutorialScRsp = 1602;
+  CmdGetTutorialGuideCsReq = 1603;
+  CmdGetTutorialGuideScRsp = 1604;
+  CmdUnlockTutorialCsReq = 1605;
+  CmdUnlockTutorialScRsp = 1606;
+  CmdUnlockTutorialGuideCsReq = 1607;
+  CmdUnlockTutorialGuideScRsp = 1608;
+  CmdFinishTutorialCsReq = 1609;
+  CmdFinishTutorialScRsp = 1610;
+  CmdFinishTutorialGuideCsReq = 1611;
+  CmdFinishTutorialGuideScRsp = 1612;
+}
+
+enum TutorialStatus {
+  TUTORIAL_NONE = 0;
+  TUTORIAL_UNLOCK = 1;
+  TUTORIAL_FINISH = 2;
+}
+
+message Waypoint {
+  uint32 id = 1;
+  uint32 finish_times = 2;
+  bool is_new = 3;
+}
+
+message ChapterBrief {
+  uint32 id = 1;
+  uint32 finish_challenge_num = 2;
+  repeated uint32 taken_reward_id_list = 3;
+  bool is_new = 4;
+}
+
+message Chapter {
+  ChapterBrief brief_info = 1;
+  repeated Waypoint waypoint_list = 2;
+}
+
+message GetWaypointCsReq { uint32 chapter_id = 1; }
+
+message GetWaypointScRsp {
+  uint32 retcode = 1;
+  Chapter chapter = 2;
+  uint32 cur_waypoint_id = 3;
+}
+
+message SetCurWaypointCsReq { uint32 waypoint_id = 1; }
+
+message SetCurWaypointScRsp {
+  uint32 retcode = 1;
+  uint32 cur_waypoint_id = 2;
+}
+
+message GetChapterCsReq {}
+
+message GetChapterScRsp {
+  uint32 retcode = 1;
+  repeated ChapterBrief chapter_list = 2;
+  uint32 cur_waypoint_id = 3;
+}
+
+message WaypointShowNewCsNotify {
+  uint32 waypoint_id = 1;
+  uint32 chapter_id = 2;
+}
+
+message TakeChapterRewardCsReq {
+  uint32 chapter_id = 1;
+  uint32 chapter_reward_id = 2;
+}
+
+message TakeChapterRewardScRsp {
+  uint32 retcode = 1;
+  uint32 chapter_id = 2;
+  uint32 chapter_reward_id = 3;
+}
+
+enum CmdWaypointType {
+  CmdWaypointTypeNone = 0;
+  CmdGetWaypointCsReq = 401;
+  CmdGetWaypointScRsp = 402;
+  CmdSetCurWaypointCsReq = 403;
+  CmdSetCurWaypointScRsp = 404;
+  CmdGetChapterCsReq = 405;
+  CmdGetChapterScRsp = 406;
+  CmdWaypointShowNewCsNotify = 407;
+  CmdTakeChapterRewardCsReq = 408;
+  CmdTakeChapterRewardScRsp = 409;
+}
+
+enum WaypointType {
+  WAYPOINT_TYPE_NONE = 0;
+  WAYPOINT_TYPE_STAGE = 1;
+  WAYPOINT_TYPE_PLOT = 2;
+}
+
+enum WaypointUnlockType {
+  WAYPOINT_UNLOCK_NONE = 0;
+  WAYPOINT_UNLOCK_PRE = 1;
+  WAYPOINT_UNLOCK_LEVEL = 2;
+}
+
+message PacketHead {
+  uint32 packet_id = 1;
+  uint32 sign_type = 2;
+  uint32 sign = 3;
+  uint32 user_id = 4;
+  uint32 src_addr = 5;
+  uint32 dst_addr = 6;
+  uint32 dispatch_type = 7;
+  uint32 server_type = 8;
+  uint32 dispatch_key = 9;
+  uint32 user_session_id = 10;
+  uint32 id = 11;
+  uint32 coroutine_id = 12;
+  uint32 hop_cnt = 13;
+}
+
+enum DispatchType {
+  DISPATCH_TYPE_NONE = 0;
+  DISPATCH_TYPE_BY_ADDR = 1;
+  DISPATCH_TYPE_BY_MOD = 2;
+  DISPATCH_TYPE_BY_RAND = 3;
+  DISPATCH_TYPE_BY_CHASH = 4;
+  DISPATCH_TYPE_BY_STICKY_SESSION = 5;
+  DISPATCH_TYPE_BY_OBJECT = 6;
+}
